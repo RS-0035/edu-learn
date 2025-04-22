@@ -2,8 +2,8 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import "./OpenCourses.css";
 import Footer from "../../components/Footer/Footer";
-import YouTubePlayer from "../../components/YoutubePlayer/YoutubePlayer";
 import CourseModule from "../../components/CourseModul/CourseModule";
+import YouTubePlayer from "../../components/YouTubePlayer/YouTubePlayer";
 
 function OpenCourses() {
   const modules = [
