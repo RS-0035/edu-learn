@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './YoutubePlayer.css';
+import './YouTubePlayer.css';
 
-const YoutubePlayer = () => {
+const YouTubePlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoId = "dQw4w9WgXcQ"; // o'zingizning video ID
 
@@ -31,4 +31,4 @@ const YoutubePlayer = () => {
 
 
 ///eferferfefrkgnrkgnrkgrklgn
-export default YoutubePlayer;
+export default YouTubePlayer;
