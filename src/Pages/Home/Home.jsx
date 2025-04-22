@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import YouTubePlayer from "../../components/YouTubePlayer/YouTubePlayer";
 import "./Home.css";
 import lightning from "../../assets/png/lighting.png";
 import first from "../../assets/png/first.png";
@@ -9,6 +8,7 @@ import arrow from "../../assets/png/arrow.png";
 import sarahImg from "../../assets/png/sarah.png";
 import PlanCard from "../../components/PlanCard/PlanCard";
 import FAQItems from "../../components/FaqItems/FaqItems";
+import YouTubePlayer from "../../components/YouTubePlayer/YouTubePlayer";
 
 const faqs = [
   {
