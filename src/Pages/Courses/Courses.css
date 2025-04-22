@@ -1,0 +1,27 @@
+.courses-intro {
+  width: 100%;
+  margin-top: 50px;
+  padding: 80px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+.courses-left {
+  width: 50%;
+}
+
+.courses-left h2 {
+  font-size: 38px;
+  font-weight: bolder;
+}
+
+.courses-right {
+  width: 50%;
+}
+
+.courses-right p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+}

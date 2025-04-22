@@ -1,0 +1,93 @@
+.plan-card {
+  max-width: 420px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  padding: 24px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.03);
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plan-label {
+  background-color: #fff4dc;
+  color: #000;
+  text-align: center;
+  padding: 8px;
+  font-weight: 600;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.price-section {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.price-section .per-month {
+  font-size: 16px;
+  color: #777;
+  font-weight: normal;
+  margin-left: 4px;
+}
+
+.features-title {
+  text-align: center;
+  margin: 20px 0 15px;
+  font-weight: 600;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  min-height: 200px;
+  height: 100%;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.feature-item .icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.included .icon {
+  color: #f6aa00;
+}
+
+.excluded {
+  color: #aaa;
+}
+
+.excluded .icon {
+  color: #aaa;
+}
+
+.get-started-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #f6aa00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.get-started-btn:hover {
+  background-color: #e99a00;
+}

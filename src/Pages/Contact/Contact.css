@@ -1,0 +1,203 @@
+.wrapper {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    
+}
+.contact-intro {
+  width: 100%;
+  margin-top: 80px;
+  padding: 80px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-left {
+  width: 50%;
+}
+
+.contact-left h2 {
+  font-size: 38px;
+  font-weight: bolder;
+}
+
+.contact-right {
+  padding-left: 40px;
+  width: 50%;
+}
+
+.contact-right p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* ////////// */
+
+.contact-form-wrapper {
+  display: flex;
+  padding: 80px;
+  margin: 80px auto;
+  gap: 40px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 1px 1px 1px lightgray;
+  width: 100%;
+  max-width: 1440px;
+}
+
+.contact-form {
+  flex: 2;
+  width: 100%;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #262626;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  border: 1px solid #f1f1f3;
+  border-radius: 6px;
+  background-color: #fff;
+  resize: none;
+}
+.form-group input {
+    padding: 15px 20px;
+}
+
+textarea {
+  height: 120px;
+}
+
+.form-group input,
+.form-group textarea:focus {
+  outline: none;
+}
+.send-button {
+  margin-top: 10px;
+  padding: 12px 20px;
+  background: #ffa500;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.contact-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.contact-info img {
+    width: 44px;
+    height: 44px;
+}
+
+.info-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #f1f1f3;
+  width: 100%;
+  max-width: 290px;
+}
+
+.info-box span {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+/* hugfurefg */
+
+@media (max-width: 1214px) {
+  .contact-left h2 {
+    font-size: 30px;
+  }
+  .contact-right p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width:830px) {
+  .contact-form-wrapper {
+    display: flex;
+    flex-direction: column;
+   
+
+  }
+  .contact-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .contact-intro {
+    width: 100%;
+    margin-top: 40px;
+    padding: 40px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-intro {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .contact-left {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .contact-right {
+    width: 100%;
+    justify-content: center;
+  }
+  .contact-form-wrapper {
+    padding: 40px;
+  }
+  
+}
+

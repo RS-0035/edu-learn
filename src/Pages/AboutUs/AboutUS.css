@@ -1,0 +1,129 @@
+.about-us-intro {
+  width: 100%;
+  margin-top: 50px;
+  padding: 80px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+.about-us-left {
+  width: 50%;
+}
+
+.about-us-left h2 {
+  font-size: 38px;
+  font-weight: bolder;
+}
+
+.about-us-right {
+  width: 50%;
+}
+
+.about-us-right p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* frfgrg */
+
+.ag-section-wrapper {
+  padding: 40px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+.ag-achievements-section,
+.ag-goals-section {
+  margin-bottom: 60px;
+}
+
+.ag-section-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.ag-section-subtitle {
+  font-size: 14px;
+  color: #666;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.ag-card-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 50px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.ag-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 40px;
+  transition: 0.3s ease;
+  width: 100%;
+  height: 100%;
+  min-height: 270px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ag-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ag-card-icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.ag-card-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.ag-card-text {
+  font-size: 14px;
+  color: #555;
+}
+
+/*  */
+
+@media (max-width: 1214px) {
+  .about-us-left h2 {
+    font-size: 30px;
+  }
+  .about-us-right p {
+    font-size: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .about-us-intro {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .about-us-left {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-us-right {
+    width: 100%;
+  }
+}
+
+@media (max-width: 660px) {
+  .ag-card-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
