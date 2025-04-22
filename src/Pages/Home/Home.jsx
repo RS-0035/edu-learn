@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import YouTubePlayer from "../../components/YoutubePlayer/YouTubePlayer";
+import YouTubePlayer from "../../components/YouTubePlayer/YouTubePlayer";
 import "./Home.css";
 import lightning from "../../assets/png/lighting.png";
 import first from "../../assets/png/first.png";
