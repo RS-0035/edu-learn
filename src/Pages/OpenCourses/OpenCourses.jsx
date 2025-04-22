@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import "./OpenCourses.css";
 import Footer from "../../components/Footer/Footer";
 import CourseModule from "../../components/CourseModul/CourseModule";
-import YouTubePlayer from "../../components/YouTubePlayer/YouTubePlayer";
+import YoutubePlayer from "../../components/YoutubePlayer/YoutubePlayer";
 
 function OpenCourses() {
   const modules = [
@@ -94,7 +94,7 @@ function OpenCourses() {
           </div>
         </div>
         <div className="video-play-section">
-          <YouTubePlayer />
+          <YoutubePlayer />
         </div>
         <div className="course-page">
           {modules.map((mod, idx) => (

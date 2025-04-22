@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import YouTubePlayer from "../../components/YouTubePlayer/YouTubePlayer";
+import YoutubePlayer from "../../components/YoutubePlayer/YoutubePlayer";
 import "./Home.css";
 import lightning from "../../assets/png/lighting.png";
 import first from "../../assets/png/first.png";
@@ -200,7 +200,7 @@ function Home() {
         </section>
       </div>
       <div className="home-video-player">
-        <YouTubePlayer />
+        <YoutubePlayer />
       </div>
 
       <section className="benefits-section">
