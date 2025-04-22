@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./FAQItems.css";
+import "./FaqItems.css";
 
-function FAQItems({ question, answer, link }) {
+function FaqItems({ question, answer, link }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -24,4 +24,4 @@ function FAQItems({ question, answer, link }) {
   );
 }
 
-export default FAQItems;
+export default FaqItems;

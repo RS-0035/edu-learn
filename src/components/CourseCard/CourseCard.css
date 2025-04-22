@@ -1,0 +1,151 @@
+.course-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  font-family: "Be Vietnam Pro", sans-serif;
+  margin: 40px 80px;
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.course-header-text {
+  width: 80%;
+}
+.course-header-text h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #222;
+  width: 80%;
+}
+
+.course-header-text p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+  width: 70%;
+}
+
+.view-btn {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.view-btn:hover {
+  background-color: #333;
+}
+
+.course-images {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.course-images img {
+  width: 100%;
+  max-width: calc(33.33% - 10px);
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.course-meta {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+  align-items: center;
+  padding: 0px 25px;
+}
+
+.instructor {
+  margin-left: auto;
+  font-weight: 600;
+  color: #222;
+}
+.curriculum-section {
+  width: 100%;
+}
+.curriculum-section h3 {
+  font-size: 18px;
+  color: #111;
+  padding: 0px 25px;
+}
+
+.curriculum-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+
+.curriculum-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 calc(20% - 16px);
+  min-width: 180px;
+  min-height: 160px;
+  justify-content: center;
+  padding: 0px 25px;
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.curriculum-number {
+  font-weight: bold;
+  font-size: 38px;
+  color: #000;
+}
+
+.curriculum-text {
+  font-size: 20px;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .course-card {
+    margin: 20px 40px;
+  }
+  .course-header-text {
+    width: 100%;
+  }
+  .course-header-text p {
+    width: 100%;
+  }
+  .view-btn {
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .curriculum-number {
+    font-size: 30px;
+  }
+  .curriculum-text {
+    font-size: 16px;
+  }
+  .course-meta {
+    padding: 0px 5px;
+}}
+
+@media (max-width: 500px) {
+    .course-card {
+      margin: 10px 20px;
+    }}

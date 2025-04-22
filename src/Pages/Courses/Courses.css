@@ -25,3 +25,37 @@
   line-height: 1.6;
   color: #555;
 }
+
+.course-groups {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+@media (max-width: 1214px) {
+    .courses-left h2 {
+      font-size: 30px;
+    }
+    .courses-right p {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 768px) {
+    .courses-intro {
+      flex-direction: column;
+      gap: 20px;
+      padding: 50px;
+      margin-top: 30px;
+    }
+    
+    .courses-left {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .courses-right {
+      width: 100%;
+    }
+  }
+  
+  

@@ -1,0 +1,77 @@
+.open-courses-intro {
+  width: 100%;
+  margin-top: 50px;
+  padding: 80px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+.open-courses-left {
+  width: 50%;
+}
+
+.open-courses-left h2 {
+  font-size: 38px;
+  font-weight: bolder;
+}
+
+.open-courses-right {
+  width: 50%;
+}
+
+.open-courses-right p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+}
+.video-play-section {
+  margin-top: 100px;
+}
+
+.course-page {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    gap: 20px;
+    background-color: #f9f9f9;
+    width: 100%;
+    margin: 80px 0;
+    padding: 20px 40px;
+  }
+/* vguh */
+@media (max-width: 1214px) {
+  .open-courses-left h2 {
+    font-size: 30px;
+  }
+  .open-courses-right p {
+    font-size: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .open-courses-intro {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .open-courses-left {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .open-courses-right {
+    width: 100%;
+  }
+}
+
+@media (max-width:830px) {
+    .course-page {
+        grid-template-columns: repeat(1, minmax(320px, 1fr));
+    }
+}
+
+@media (max-width:390px) {
+    .open-courses-intro{
+        padding: 40px;
+        margin-top: 40px;
+    }
+}
