@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { db } from "../../firebase";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 import "./Contact.css";
 import Navbar from "../../components/Navbar/Navbar";
 import sms from "../../assets/png/sms.png";
@@ -10,6 +12,43 @@ import location from "../../assets/png/location.png";
 import Footer from "../../components/Footer/Footer";
 
 function Contact() {
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await addDoc(collection(db, "contacts"), {
+        ...form,
+        createdAt: Timestamp.now()
+      });
+      alert("Xabaringiz yuborildi!");
+      setForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Xatolik:", error);
+      alert("Xatolik yuz berdi: " + error.message);
+    }
+  };
+
+
   return (
     <div>
       <Navbar />
@@ -33,7 +72,7 @@ function Contact() {
 
       <div className="contact-form-wrapper">
         <div className="contact-form">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="form-group">
                 <label>First Name</label>
