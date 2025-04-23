@@ -31,7 +31,7 @@ function Contact() {
     try {
       await addDoc(collection(db, "contacts"), {
         ...form,
-        createdAt: Timestamp.now()
+        createdAt: Timestamp.now(),
       });
       alert("Xabaringiz yuborildi!");
       setForm({
@@ -47,7 +47,6 @@ function Contact() {
       alert("Xatolik yuz berdi: " + error.message);
     }
   };
-
 
   return (
     <div>
@@ -76,33 +75,68 @@ function Contact() {
             <div className="form-row">
               <div className="form-group">
                 <label>First Name</label>
-                <input type="text" placeholder="Enter First Name" />
+                <input
+                  value={form.firstName}
+                  onChange={handleChange}
+                  name="firstName"
+                  type="text"
+                  placeholder="Enter First Name"
+                />
               </div>
               <div className="form-group">
                 <label>Last Name</label>
-                <input type="text" placeholder="Enter Last Name" />
+                <input
+                  value={form.lastName}
+                  onChange={handleChange}
+                  name="lastName"
+                  type="text"
+                  placeholder="Enter Last Name"
+                />
               </div>
             </div>
 
             <div className="form-row">
               <div className="form-group">
                 <label>Email</label>
-                <input type="email" placeholder="Enter your Email" />
+                <input
+                  value={form.email}
+                  onChange={handleChange}
+                  name="email"
+                  type="email"
+                  placeholder="Enter your Email"
+                />
               </div>
               <div className="form-group">
                 <label>Phone</label>
-                <input type="tel" placeholder="Enter Phone Number" />
+                <input
+                  value={form.phone}
+                  onChange={handleChange}
+                  name="phone"
+                  type="tel"
+                  placeholder="Enter Phone Number"
+                />
               </div>
             </div>
 
             <div className="form-group">
               <label>Subject</label>
-              <input type="text" placeholder="Enter your Subject" />
+              <input
+                value={form.subject}
+                onChange={handleChange}
+                name="subject"
+                type="text"
+                placeholder="Enter your Subject"
+              />
             </div>
 
             <div className="form-group">
               <label className="message-textarea">Message</label>
-              <textarea placeholder="Enter your Message here..."></textarea>
+              <textarea
+                value={form.message}
+                onChange={handleChange}
+                name="message"
+                placeholder="Enter your Message here..."
+              ></textarea>
             </div>
 
             <button type="submit" className="send-button">
