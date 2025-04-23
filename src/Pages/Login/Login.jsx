@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import "./Login.css";
 import sarahImg from "../../assets/png/sarah.png";
+import google from "../../assets/png/google.png";
 import Footer from "../../components/Footer/Footer";
+import { Link } from "react-router-dom";
 
 function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -24,6 +27,10 @@ function Login() {
     } else {
       alert("Please agree to the Terms of Use and Privacy Policy.");
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -70,11 +77,10 @@ function Login() {
           <div className="login-box">
             <h2 className="login-title">Login</h2>
             <p className="login-subtitle">
-            Welcome back! Please log in to access your account.
+              Welcome back! Please log in to access your account.
             </p>
 
             <form onSubmit={handleSubmit} className="login-form">
-
               <label>Email</label>
               <input
                 type="email"
@@ -88,15 +94,19 @@ function Login() {
               <label>Password</label>
               <div className="password-wrapper">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   value={form.password}
                   onChange={handleChange}
                   placeholder="Enter your Password"
                   required
                 />
-                <span className="eye-icon">
-                  <i className="fa-solid fa-eye-slash"></i>
+                <span className="eye-icon" onClick={togglePasswordVisibility}>
+                  <i
+                    className={`fa-solid ${
+                      showPassword ? "fa-eye" : "fa-eye-slash"
+                    }`}
+                  ></i>
                 </span>
               </div>
 
@@ -107,9 +117,7 @@ function Login() {
                   checked={form.agree}
                   onChange={handleChange}
                 />
-                <span>
-                  Remember Me
-                </span>
+                <span>Remember Me</span>
               </div>
 
               <button type="submit" className="login-button">
@@ -123,15 +131,11 @@ function Login() {
               </div>
 
               <button type="button" className="google-button">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Google__G__Logo.svg"
-                  alt="Google"
-                />
+                <img src={google} alt="Google" />
                 Login with Google
               </button>
-
               <p className="login-link">
-                Don't have an account? <a href="#">Register</a>
+                Don't have an account? <Link to="/register">Register</Link>
               </p>
             </form>
           </div>

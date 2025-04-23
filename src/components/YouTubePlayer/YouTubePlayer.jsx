@@ -3,7 +3,7 @@ import './YouTubePlayer.css';
 
 const YouTubePlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const videoId = "dQw4w9WgXcQ"; // o'zingizning video ID
+  const videoId = "AM3ZJGxZi-c"; // o'zingizning video ID
 
   const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 

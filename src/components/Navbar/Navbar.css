@@ -158,3 +158,8 @@
     padding: 10px 40px;
   }
 }
+@media (max-width:470px) {
+  .nav-links{
+    width: 45%;
+  }
+}

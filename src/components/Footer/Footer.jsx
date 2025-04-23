@@ -7,12 +7,15 @@ import phone from "../../assets/png/phone.png";
 import facebook from "../../assets/png/facebook.png";
 import twitter from "../../assets/png/twitter.png";
 import linkedin from "../../assets/png/linkedin.png";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-col logo-col">
-          <img src={logo} alt="Skillbridge Logo" className="footer-logo" />
+          <Link to="/" className="logo-link">
+            <img src={logo} alt="Logo" className="footer-logo" />
+          </Link>
           <p>
             <img width={30} src={sms} alt="sms" /> hello@skillbridge.com
           </p>
@@ -30,16 +33,16 @@ const Footer = () => {
             <h4>Home</h4>
             <ul>
               <li>
-                <a href="/benefits">Benefits</a>
+                <a href="#benefit-section">Benefits</a>
               </li>
               <li>
-                <a href="/courses">Our Courses</a>
+                <a href="#our-courses">Our Courses</a>
               </li>
               <li>
-                <a href="/testimonials">Our Testimonials</a>
+                <a href="#our-testimonials">Our Testimonials</a>
               </li>
               <li>
-                <a href="/faq">Our FAQ</a>
+                <a href="#faq">Our FAQ</a>
               </li>
             </ul>
           </div>
@@ -48,13 +51,13 @@ const Footer = () => {
             <h4>About Us</h4>
             <ul>
               <li>
-                <a href="/company">Company</a>
+                <a href="#company">Company</a>
               </li>
               <li>
-                <a href="/achievements">Achievements</a>
+                <a href="#achievements">Achievements</a>
               </li>
               <li>
-                <a href="/goals">Our Goals</a>
+                <a href="#goals">Our Goals</a>
               </li>
             </ul>
           </div>
@@ -62,13 +65,25 @@ const Footer = () => {
           <div className="footer-col-social">
             <h4>Social Profiles</h4>
             <div className="social-icons-footer">
-              <a href="#">
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img width={44} src={facebook} alt="facebook" />
               </a>
-              <a href="#">
+              <a
+                href="https://www.twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img width={44} src={twitter} alt="twitter" />
               </a>
-              <a href="#">
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img width={44} src={linkedin} alt="linkedin" />
               </a>
             </div>

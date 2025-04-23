@@ -68,7 +68,7 @@ function AboutUs() {
   return (
     <>
       <Navbar />
-      <div className="about-us-section">
+      <div className="about-us-section" id="company">
         <div className="about-us-intro">
           <div className="about-us-left">
             <h2>About Skillbridge</h2>
@@ -85,7 +85,7 @@ function AboutUs() {
         </div>
       </div>
       <div className="ag-section-wrapper">
-        <section className="ag-achievements-section">
+        <section className="ag-achievements-section" id="achievements">
           <h2 className="ag-section-title">Achievements</h2>
           <p className="ag-section-subtitle">
             Our commitment to excellence has led us to achieve significant
@@ -105,7 +105,7 @@ function AboutUs() {
           </div>
         </section>
 
-        <section className="ag-goals-section">
+        <section className="ag-goals-section" id="goals">
           <h2 className="ag-section-title">Our Goals</h2>
           <p className="ag-section-subtitle">
             At SkillBridge, our goal is to empower individuals from all

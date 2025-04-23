@@ -203,7 +203,7 @@ function Home() {
         <YouTubePlayer />
       </div>
 
-      <section className="benefits-section">
+      <section className="benefits-section" id="benefit-section">
         <div className="benefits-header overal-title">
           <div className="benefits-text-info">
             <h2>Benefits</h2>
@@ -236,7 +236,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="home-courses-section">
+      <section className="home-courses-section" id="our-courses">
         <div className="home-courses-header overal-title">
           <div className="info-head">
             <h2>Our Courses</h2>
@@ -272,7 +272,7 @@ function Home() {
         </div>
       </section>
 
-      <div className="home-testimonal">
+      <div className="home-testimonal" id="our-testimonials">
         <div className="home-testimonal-header overal-title">
           <div className="info-head">
             <h2>Our Testimonials</h2>
@@ -342,7 +342,7 @@ function Home() {
           <PlanCard title="Pro" price="79" features={proFeatures} />
         </div>
 
-        <div className="faq-section">
+        <div className="faq-section" id="faq">
           <div className="faq-wrapper">
             <div className="faq-left">
               <h2>Frequently Asked Questions</h2>
