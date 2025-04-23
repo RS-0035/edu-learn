@@ -11,7 +11,7 @@ import Footer from "../../components/Footer/Footer";
 
 function Contact() {
   return (
-    <div className="wrapper">
+    <div>
       <Navbar />
 
       <section className="contact-intro">
@@ -62,7 +62,7 @@ function Contact() {
             </div>
 
             <div className="form-group">
-              <label>Message</label>
+              <label className="message-textarea">Message</label>
               <textarea placeholder="Enter your Message here..."></textarea>
             </div>
 
@@ -93,16 +93,29 @@ function Contact() {
           </div>
           <div className="info-box">
             <div className="social-icons">
-              <span>
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img src={facebook} alt="facebook" />
-              </span>
-              <span>
+              </a>
+              <a
+                href="https://www.twitter.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img src={twitter} alt="twitter" />
-              </span>
-              <span>
+              </a>
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img src={linkedin} alt="linkedin" />
-              </span>
+              </a>
             </div>
+
             <p>Social Profiles</p>
           </div>
         </div>

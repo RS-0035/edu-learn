@@ -1,7 +1,13 @@
 import React from 'react';
 import './CourseCard.css';
+import { useNavigate } from 'react-router-dom';
 
 function CourseCard({ title, description, duration, level, instructor, curriculum, images }) {
+  const navigate = useNavigate();
+
+  const handleViewCourse = () => {
+    navigate('/open-courses'); // sahifaga yo‘naltirish
+  };
   return (
     <div className="course-card">
       <div className="course-header">
@@ -9,7 +15,7 @@ function CourseCard({ title, description, duration, level, instructor, curriculu
           <h2>{title}</h2>
           <p>{description}</p>
         </div>
-        <button className="view-btn">View Course</button>
+        <button className="view-btn" onClick={handleViewCourse}>View Course</button>
       </div>
 
       <div className="course-images">

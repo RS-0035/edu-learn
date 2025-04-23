@@ -1,7 +1,7 @@
 .pricing-intro {
   width: 100%;
-  margin-top: 80px;
-  padding: 80px 80px;
+  margin: 80px 0;
+  padding: 0 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,6 +9,7 @@
 }
 .pricing-left {
   width: 50%;
+  padding-bottom: 40px;
 }
 
 .pricing-left h2 {
@@ -18,6 +19,7 @@
 
 .pricing-right {
   width: 50%;
+  padding-bottom: 40px;
 }
 
 .pricing-right p {
@@ -29,7 +31,8 @@
 .pricing-options {
   display: flex;
   justify-content: center;
-  padding: 80px 0;
+  /* padding: 80px 0; */
+  margin-bottom: 50px;
 }
 
 .toggle-container {
@@ -123,20 +126,55 @@
   .pricing-intro {
     flex-direction: column;
     gap: 20px;
+    gap: 20px;
+    padding: 40px;
+    margin-top: 20px;
+    margin-bottom: 0;
   }
   .pricing-left {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 0px;
   }
   .pricing-right {
     width: 100%;
+    justify-content: center;
+    padding: 5px;
   }
   .toggle-container {
     padding: 8px;
   }
   .toggle-option {
     padding: 8px 16px;
+  }
+  .pricing-options {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+}
+@media (max-width: 470px) {
+  .pricing-intro {
+    padding: 20px;
+    margin-top: 20px;
+  }
+  .pricing-left h2 {
+    font-size: 26px;
+  }
+  .pricing-left {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .pricing-options {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .pricing-container {
+    gap: 30px;
+  }
+  .faq-section {
+    margin: 20px 0;
+    padding: 40px 40px;
   }
 }

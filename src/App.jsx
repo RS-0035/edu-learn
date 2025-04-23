@@ -9,10 +9,12 @@ import Courses from "./Pages/Courses/Courses";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import OpenCourses from "./Pages/OpenCourses/OpenCourses";
+import ScrollToHashElement from "./components/ScrollToHashElement/ScrollToHashElement";
 
 function App() {
   return (
     <>
+      <ScrollToHashElement />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />

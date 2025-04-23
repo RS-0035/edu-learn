@@ -9,6 +9,7 @@ import sarahImg from "../../assets/png/sarah.png";
 import PlanCard from "../../components/PlanCard/PlanCard";
 import FAQItems from "../../components/FaqItems/FaqItems";
 import YouTubePlayer from "../../components/YouTubePlayer/YouTubePlayer";
+import { Link } from "react-router-dom";
 
 const faqs = [
   {
@@ -194,8 +195,12 @@ function Home() {
           </p>
 
           <div className="hero-buttons">
-            <button className="btn-orange">Explore Courses</button>
-            <button className="btn-outline">View Pricing</button>
+            <Link to="/courses" className="btn-orange">
+              Explore Courses
+            </Link>
+            <Link to="/pricing" className="btn-outline">
+              View Pricing
+            </Link>
           </div>
         </section>
       </div>

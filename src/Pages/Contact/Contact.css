@@ -1,20 +1,21 @@
 .wrapper {
-    max-width: 1440px;
-    width: 100%;
-    margin: 0 auto;
-    
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
 }
 .contact-intro {
   width: 100%;
-  margin-top: 80px;
-  padding: 80px 80px;
+  margin: 80px 0;
+  padding: 0 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid lightgray;
 }
 
 .contact-left {
   width: 50%;
+  padding-bottom: 40px;
 }
 
 .contact-left h2 {
@@ -23,8 +24,8 @@
 }
 
 .contact-right {
-  padding-left: 40px;
   width: 50%;
+  padding-bottom: 40px;
 }
 
 .contact-right p {
@@ -90,7 +91,7 @@
   resize: none;
 }
 .form-group input {
-    padding: 15px 20px;
+  padding: 15px 20px;
 }
 
 textarea {
@@ -120,8 +121,8 @@ textarea {
   gap: 20px;
 }
 .contact-info img {
-    width: 44px;
-    height: 44px;
+  width: 44px;
+  height: 44px;
 }
 
 .info-box {
@@ -146,7 +147,6 @@ textarea {
   gap: 10px;
 }
 
-
 /* hugfurefg */
 
 @media (max-width: 1214px) {
@@ -158,12 +158,10 @@ textarea {
   }
 }
 
-@media (max-width:830px) {
+@media (max-width: 830px) {
   .contact-form-wrapper {
     display: flex;
     flex-direction: column;
-   
-
   }
   .contact-info {
     display: flex;
@@ -184,20 +182,53 @@ textarea {
     align-items: center;
     justify-content: center;
     gap: 20px;
+    padding: 40px;
+    margin-top: 20px;
+    margin-bottom: 0;
   }
+
   .contact-left {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 0px;
   }
   .contact-right {
     width: 100%;
     justify-content: center;
+    padding: 5px;
   }
   .contact-form-wrapper {
-    padding: 40px;
+    padding: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
-  
+  .contact-left h2 {
+    font-size: 26px;
+  }
+  .form-row {
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .form-group {
+    margin: 0;
+  }
+  .message-textarea {
+    margin-top: 15px;
+  }
 }
-
+@media (max-width: 480px) {
+  .contact-left {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .contact-intro {
+    padding: 20px;
+    margin-top: 20px;
+  }
+}

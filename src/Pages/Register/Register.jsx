@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import "./Register.css";
 import sarahImg from "../../assets/png/sarah.png";
+import google from "../../assets/png/google.png";
 import Footer from "../../components/Footer/Footer";
+import { Link } from "react-router-dom";
 
 function Register() {
+  const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -25,6 +28,11 @@ function Register() {
       alert("Please agree to the Terms of Use and Privacy Policy.");
     }
   };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   return (
     <>
       <Navbar />
@@ -96,15 +104,19 @@ function Register() {
               <label>Password</label>
               <div className="password-wrapper">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   value={form.password}
                   onChange={handleChange}
                   placeholder="Enter your Password"
                   required
                 />
-                <span className="eye-icon">
-                  <i className="fa-solid fa-eye-slash"></i>
+                <span className="eye-icon" onClick={togglePasswordVisibility}>
+                  <i
+                    className={`fa-solid ${
+                      showPassword ? "fa-eye" : "fa-eye-slash"
+                    }`}
+                  ></i>
                 </span>
               </div>
 
@@ -132,15 +144,12 @@ function Register() {
               </div>
 
               <button type="button" className="google-button">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Google__G__Logo.svg"
-                  alt="Google"
-                />
+                <img src={google} alt="Google" />
                 Register with Google
               </button>
 
               <p className="login-link">
-                Already have an account? <a href="#">Login</a>
+                Already have an account? <Link to="/login">Login</Link>
               </p>
             </form>
           </div>
