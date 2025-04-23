@@ -5,19 +5,22 @@ import sarahImg from "../../assets/png/sarah.png";
 import google from "../../assets/png/google.png";
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword, setPersistence,
+  browserLocalPersistence,
+  browserSessionPersistence} from "firebase/auth";
+import { auth } from "../../firebase";
 
 function Login() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [form, setForm] = useState({
-    fullName: "",
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
-    agree: false,
+    remember: false,
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm({ ...form, [name]: type === "checkbox" ? checked : value });
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
 
   const handleSubmit = (e) => {
@@ -31,6 +34,34 @@ function Login() {
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const { email, password, remember  } = formData;
+
+    try {
+      await setPersistence(auth, remember ? browserLocalPersistence : browserSessionPersistence);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log("Login successful:", user);
+      alert("Tizimga muvaffaqiyatli kirildi!");
+
+      // navigate('/account') — foydalanuvchini boshqa sahifaga o'tkazish
+    } catch (error) {
+      console.error("Xatolik:", error.code, error.message);
+      if (error.code === "auth/user-not-found") {
+        alert("Bunday foydalanuvchi topilmadi.");
+      } else if (error.code === "auth/wrong-password") {
+        alert("Parol noto‘g‘ri.");
+      } else {
+        alert("Xatolik yuz berdi: " + error.message);
+      }
+    }
   };
 
   return (
@@ -80,12 +111,12 @@ function Login() {
               Welcome back! Please log in to access your account.
             </p>
 
-            <form onSubmit={handleSubmit} className="login-form">
+            <form onSubmit={handleLogin} className="login-form">
               <label>Email</label>
               <input
                 type="email"
                 name="email"
-                value={form.email}
+                value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your Email"
                 required
@@ -96,7 +127,7 @@ function Login() {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  value={form.password}
+                  value={formData.password}
                   onChange={handleChange}
                   placeholder="Enter your Password"
                   required
@@ -114,13 +145,17 @@ function Login() {
                 <input
                   type="checkbox"
                   name="agree"
-                  checked={form.agree}
+                  checked={formData.remember}
                   onChange={handleChange}
                 />
                 <span>Remember Me</span>
               </div>
 
-              <button type="submit" className="login-button">
+              <button
+                onClick={handleLogin}
+                type="submit"
+                className="login-button"
+              >
                 Login
               </button>
 

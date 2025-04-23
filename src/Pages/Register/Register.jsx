@@ -6,7 +6,20 @@ import google from "../../assets/png/google.png";
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../../firebase";
+
 function Register() {
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    agree: false,
+  });
+
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
     fullName: "",
@@ -17,12 +30,12 @@ function Register() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm({ ...form, [name]: type === "checkbox" ? checked : value });
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (form.agree) {
+    if (formData.agree) {
       console.log("Form submitted", form);
     } else {
       alert("Please agree to the Terms of Use and Privacy Policy.");
@@ -31,6 +44,60 @@ function Register() {
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const { fullName, email, password, agree } = formData;
+
+    if (!agree) {
+      alert("Davom etishdan oldin shartlarga rozilik bildiring.");
+      return;
+    }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log("User registered:", user);
+      alert("Ro‘yxatdan o‘tish muvaffaqiyatli!");
+      setFormData({
+        fullName: "",
+        email: "",
+        password: "",
+        agree: false,
+      });
+
+      // Formani tozalash yoki boshqa sahifaga o'tkazish:
+      // navigate('/account'); yoki formData ni reset qilish
+    } catch (error) {
+      console.error("Xatolik:", error.code, error.message);
+
+      // Foydalanuvchiga tushunarli xabar ko‘rsatish:
+      if (error.code === "auth/email-already-in-use") {
+        alert("Bu email allaqachon ro‘yxatdan o‘tgan.");
+      } else if (error.code === "auth/weak-password") {
+        alert("Parol kamida 6 ta belgidan iborat bo‘lishi kerak.");
+      } else {
+        alert("Xatolik yuz berdi: " + error.message);
+      }
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      console.log("Google orqali tizimga kirildi:", user);
+      alert("Google orqali muvaffaqiyatli tizimga kirdingiz!");
+
+      // navigate('/account'); // yoki foydalanuvchini boshqa sahifaga o'tkazish
+    } catch (error) {
+      console.error("Google login xatosi:", error.code, error.message);
+      alert("Xatolik: " + error.message);
+    }
   };
 
   return (
@@ -85,7 +152,7 @@ function Register() {
               <input
                 type="text"
                 name="fullName"
-                value={form.fullName}
+                value={formData.fullName}
                 onChange={handleChange}
                 placeholder="Enter your Name"
                 required
@@ -95,7 +162,7 @@ function Register() {
               <input
                 type="email"
                 name="email"
-                value={form.email}
+                value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your Email"
                 required
@@ -106,7 +173,7 @@ function Register() {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  value={form.password}
+                  value={formData.password}
                   onChange={handleChange}
                   placeholder="Enter your Password"
                   required
@@ -124,7 +191,7 @@ function Register() {
                 <input
                   type="checkbox"
                   name="agree"
-                  checked={form.agree}
+                  checked={formData.agree}
                   onChange={handleChange}
                 />
                 <span>
@@ -133,7 +200,11 @@ function Register() {
                 </span>
               </div>
 
-              <button type="submit" className="register-button">
+              <button
+                onClick={handleRegister}
+                type="submit"
+                className="register-button"
+              >
                 Register
               </button>
 
@@ -143,7 +214,11 @@ function Register() {
                 <hr />
               </div>
 
-              <button type="button" className="google-button">
+              <button
+                onClick={handleGoogleLogin}
+                type="button"
+                className="google-button"
+              >
                 <img src={google} alt="Google" />
                 Register with Google
               </button>
