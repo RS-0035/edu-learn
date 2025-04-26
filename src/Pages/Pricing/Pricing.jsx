@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import "./Pricing.css";
+
+// Components
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import "./Pricing.css";
 import PlanCard from "../../components/PlanCard/PlanCard";
 import FAQItems from "../../components/FaqItems/FaqItems";
+
+// Firebase
+import { db } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const faqs = [
   {
@@ -36,31 +42,32 @@ const faqs = [
 ];
 
 function Pricing() {
-  const [active, setActive] = useState("monthly");
+  const [billingType, setBillingType] = useState("monthly");
+  const [plans, setPlans] = useState([]);
 
-  const freeFeatures = [
-    { text: "Access to selected free courses.", included: true },
-    { text: "Limited course materials and resources.", included: true },
-    { text: "Basic community support.", included: true },
-    { text: "No certification upon completion.", included: true },
-    { text: "Ad-supported platform.", included: true },
-    { text: "Access to exclusive Pro Plan community forums.", included: false },
-    { text: "Early access to new courses and updates.", included: false },
-  ];
-  const proFeatures = [
-    { text: "Unlimited access to all courses.", included: true },
-    { text: "Unlimited course materials and resources.", included: true },
-    { text: "Priority support from instructors.", included: true },
-    { text: "Course completion certificates.", included: true },
-    { text: "Ad-free experience.", included: true },
-    { text: "Access to exclusive Pro Plan community forums.", included: true },
-    { text: "Early access to new courses and updates.", included: true },
-  ];
+  useEffect(() => {
+    const fetchPlans = async () => {
+      try {
+        const docRef = doc(db, "pricingPlans", billingType);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setPlans(docSnap.data().plans);
+        } else {
+          console.warn("No pricing data found for:", billingType);
+        }
+      } catch (error) {
+        console.error("Error fetching pricing plans:", error);
+      }
+    };
+
+    fetchPlans();
+  }, [billingType]);
 
   return (
     <div>
       <Navbar />
-      <div className="pricing-hero-section">
+
+      <section className="pricing-hero-section">
         <div className="pricing-intro">
           <div className="pricing-left">
             <h2>Our Pricings</h2>
@@ -77,27 +84,37 @@ function Pricing() {
             </p>
           </div>
         </div>
+
         <div className="pricing-options">
           <div className="toggle-container">
             <button
               className={`toggle-option ${
-                active === "monthly" ? "active" : ""
+                billingType === "monthly" ? "active" : ""
               }`}
-              onClick={() => setActive("monthly")}
+              onClick={() => setBillingType("monthly")}
             >
               Monthly
             </button>
             <button
-              className={`toggle-option ${active === "yearly" ? "active" : ""}`}
-              onClick={() => setActive("yearly")}
+              className={`toggle-option ${
+                billingType === "yearly" ? "active" : ""
+              }`}
+              onClick={() => setBillingType("yearly")}
             >
               Yearly
             </button>
           </div>
         </div>
+
         <div className="pricing-container">
-          <PlanCard title="Free" price="0" features={freeFeatures} />
-          <PlanCard title="Pro" price="79" features={proFeatures} />
+          {plans.map((plan, index) => (
+            <PlanCard
+              key={index}
+              title={plan.title}
+              price={plan.price}
+              features={plan.features}
+            />
+          ))}
         </div>
 
         <div className="faq-section">
@@ -117,9 +134,11 @@ function Pricing() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
       <Footer />
     </div>
   );
 }
+
 export default Pricing;

@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import "./OpenCourses.css";
 import Footer from "../../components/Footer/Footer";
 import CourseModule from "../../components/CourseModul/CourseModule";
 import YouTubePlayer from "../../components/YouTubePlayer/YouTubePlayer";
+import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 function OpenCourses() {
+  const { id } = useParams();
+  const [course, setCourse] = useState(null);
+
+  console.log(id);
+
   const modules = [
     {
       moduleNumber: 1,
@@ -75,6 +83,27 @@ function OpenCourses() {
       ],
     },
   ];
+
+  useEffect(() => {
+    const fetchCourse = async () => {
+      try {
+        const docRef = doc(db, "courses", id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setCourse({ id: docSnap.id, ...docSnap.data() });
+        } else {
+          console.log("Course not found");
+        }
+      } catch (err) {
+        console.error("Xatolik:", err);
+      }
+    };
+
+    fetchCourse();
+  }, [id]);
+
+  if (!course) return <p>Loading course...</p>;
   return (
     <>
       <Navbar />

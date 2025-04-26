@@ -12,8 +12,8 @@ const PlanCard = ({ title, price, features }) => {
       <h4 className="features-title">Available Features</h4>
       <ul className="features-list">
         {features.map((feature, index) => (
-          <li key={index} className={`feature-item ${feature.included ? 'included' : 'excluded'}`}>
-            <span className="icon">{feature.included ? '✔' : '✖'}</span>
+          <li key={index} className={`feature-item ${feature.available ? 'included' : 'excluded'}`}>
+            <span className="icon">{feature.available ? '✔' : '✖'}</span>
             {feature.text}
           </li>
         ))}

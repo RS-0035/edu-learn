@@ -1,27 +1,40 @@
-import React from 'react';
-import './CourseCard.css';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./CourseCard.css";
 
-function CourseCard({ title, description, duration, level, instructor, curriculum, images }) {
+function CourseCard({
+  id,
+  title,
+  description,
+  duration,
+  level,
+  instructor,
+  curriculum,
+  images,
+}) {
   const navigate = useNavigate();
 
   const handleViewCourse = () => {
-    navigate('/open-courses'); // sahifaga yo‘naltirish
+    navigate(`/open-courses/${id}`);
   };
   return (
     <div className="course-card">
+      {/* Course header */}
+
       <div className="course-header">
         <div className="course-header-text">
           <h2>{title}</h2>
           <p>{description}</p>
         </div>
-        <button className="view-btn" onClick={handleViewCourse}>View Course</button>
+        <button className="view-btn" onClick={handleViewCourse}>
+          View Course
+        </button>
       </div>
 
       <div className="course-images">
-        {images.map((img, index) => (
-          <img key={index} src={img} alt={`preview ${index + 1}`} />
-        ))}
+        {images?.map((url, index) => {
+          return <img key={index} src={url} alt={`preview ${index + 1}`} />;
+        })}
       </div>
 
       <div className="course-meta">

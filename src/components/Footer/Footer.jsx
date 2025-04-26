@@ -51,13 +51,13 @@ const Footer = () => {
             <h4>About Us</h4>
             <ul>
               <li>
-                <a href="#company">Company</a>
+                <a href="/about#company">Company</a>
               </li>
               <li>
-                <a href="#achievements">Achievements</a>
+                <a href="/about#achievements">Achievements</a>
               </li>
               <li>
-                <a href="#goals">Our Goals</a>
+                <a href="/about#goals">Our Goals</a>
               </li>
             </ul>
           </div>
