@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import "./Home.css";
+
+// react router dom
+import { Link } from "react-router-dom";
+
+// Firebase
+import { db } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
+
+// components
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import "./Home.css";
-import lightning from "../../assets/png/lighting.png";
-import first from "../../assets/png/first.png";
-import arrow from "../../assets/png/arrow.png";
-import sarahImg from "../../assets/png/sarah.png";
 import PlanCard from "../../components/PlanCard/PlanCard";
 import FAQItems from "../../components/FaqItems/FaqItems";
 import YouTubePlayer from "../../components/YouTubePlayer/YouTubePlayer";
-import { Link } from "react-router-dom";
+
+// images
+import sarahImg from "../../assets/png/sarah.png";
+import first from "../../assets/png/first.png";
+import arrow from "../../assets/png/arrow.png";
+import lightning from "../../assets/png/lighting.png";
 
 const faqs = [
   {
@@ -43,6 +53,8 @@ const faqs = [
 
 function Home() {
   const [active, setActive] = useState("monthly");
+  const [billingType, setBillingType] = useState("monthly");
+  const [plans, setPlans] = useState([]);
 
   const benefitsData = [
     {
@@ -171,6 +183,24 @@ function Home() {
     { text: "Access to exclusive Pro Plan community forums.", included: true },
     { text: "Early access to new courses and updates.", included: true },
   ];
+
+  useEffect(() => {
+    const fetchPlans = async () => {
+      try {
+        const docRef = doc(db, "pricingPlans", billingType);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setPlans(docSnap.data().plans);
+        } else {
+          console.warn("No pricing data found for:", billingType);
+        }
+      } catch (error) {
+        console.error("Error fetching pricing plans:", error);
+      }
+    };
+
+    fetchPlans();
+  }, [billingType]);
 
   return (
     <>
@@ -325,17 +355,17 @@ function Home() {
             <div className="toggle-container">
               <button
                 className={`toggle-option ${
-                  active === "monthly" ? "active" : ""
+                  billingType === "monthly" ? "active" : ""
                 }`}
-                onClick={() => setActive("monthly")}
+                onClick={() => setBillingType("monthly")}
               >
                 Monthly
               </button>
               <button
                 className={`toggle-option ${
-                  active === "yearly" ? "active" : ""
+                  billingType === "yearly" ? "active" : ""
                 }`}
-                onClick={() => setActive("yearly")}
+                onClick={() => setBillingType("yearly")}
               >
                 Yearly
               </button>
@@ -343,8 +373,14 @@ function Home() {
           </div>
         </div>
         <div className="pricing-container">
-          <PlanCard title="Free" price="0" features={freeFeatures} />
-          <PlanCard title="Pro" price="79" features={proFeatures} />
+          {plans.map((plan, index) => (
+            <PlanCard
+              key={index}
+              title={plan.title}
+              price={plan.price}
+              features={plan.features}
+            />
+          ))}
         </div>
 
         <div className="faq-section" id="faq">
