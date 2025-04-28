@@ -1,88 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import "./OpenCourses.css";
 import Footer from "../../components/Footer/Footer";
 import CourseModule from "../../components/CourseModul/CourseModule";
 import YouTubePlayer from "../../components/YouTubePlayer/YouTubePlayer";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import "./OpenCourses.css";
 
 function OpenCourses() {
   const { id } = useParams();
   const [course, setCourse] = useState(null);
-
-  console.log(id);
-
-  const modules = [
-    {
-      moduleNumber: 1,
-      title: "Introduction to UI/UX Design",
-      lessons: [
-        {
-          name: "Understanding UI/UX Design Principles",
-          duration: "45 Minutes",
-        },
-        {
-          name: "Importance of User-Centered Design",
-          duration: "1 Hour",
-          highlighted: true,
-        },
-        {
-          name: "The Role of UI/UX Design in Product Development",
-          duration: "45 Minutes",
-        },
-      ],
-    },
-    {
-      moduleNumber: 2,
-      title: "User Research and Analysis",
-      lessons: [
-        { name: "Conducting User Research and Interviews", duration: "1 Hour" },
-        { name: "Analyzing User Needs and Behavior", duration: "1 Hour" },
-        {
-          name: "Creating User Personas and Scenarios",
-          duration: "45 Minutes",
-        },
-      ],
-    },
-    {
-      moduleNumber: 3,
-      title: "Wireframing and Prototyping",
-      lessons: [
-        {
-          name: "Introduction to Wireframing Tools and Techniques",
-          duration: "1 Hour",
-        },
-        { name: "Creating Low-Fidelity Wireframes", duration: "1 Hour" },
-        { name: "Prototyping and Interactive Mockups", duration: "1 Hour" },
-      ],
-    },
-    {
-      moduleNumber: 4,
-      title: "Visual Design and Branding",
-      lessons: [
-        {
-          name: "Color Theory and Typography in UI Design",
-          duration: "1 Hour",
-        },
-        { name: "Visual Hierarchy and Layout Design", duration: "1 Hour" },
-        { name: "Creating a Strong Brand Identity", duration: "45 Minutes" },
-      ],
-    },
-    {
-      moduleNumber: 5,
-      title: "Usability Testing and Iteration",
-      lessons: [
-        {
-          name: "Usability Testing Methods and Techniques",
-          duration: "1 Hour",
-        },
-        { name: "Analyzing Usability Test Results", duration: "45 Minutes" },
-        { name: "Iterating and Improving UX Designs", duration: "45 Minutes" },
-      ],
-    },
-  ];
+  const [mainVideoUrl, setMainVideoUrl] = useState(null);
+  const [currentVideo, setCurrentVideo] = useState("");
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -91,7 +21,18 @@ function OpenCourses() {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          setCourse({ id: docSnap.id, ...docSnap.data() });
+          const courseData = { id: docSnap.id, ...docSnap.data() };
+          setCourse(courseData);
+
+          // Set default main video: first module's first video
+          if (courseData.curriculum?.length > 0) {
+            const firstModule = courseData.curriculum[0];
+            if (firstModule.videos?.length > 0) {
+              console.log(firstModule.videos[0]);
+
+              setCurrentVideo(firstModule.videos[0].videoUrl);
+            }
+          }
         } else {
           console.log("Course not found");
         }
@@ -104,30 +45,33 @@ function OpenCourses() {
   }, [id]);
 
   if (!course) return <p>Loading course...</p>;
+
+  console.log(currentVideo);
+
   return (
     <>
       <Navbar />
       <div className="open-courses-section">
         <div className="open-courses-intro">
           <div className="open-courses-left">
-            <h2>UI/UX Design Course</h2>
+            <h2>{course.title}</h2>
           </div>
           <div className="open-courses-right">
-            <p>
-              Welcome to our UI/UX Design course! This comprehensive program
-              will equip you with the knowledge and skills to create exceptional
-              user interfaces (UI) and enhance user experiences (UX). Dive into
-              the world of design thinking, wireframing, prototyping, and
-              usability testing. Below is an overview of the curriculum
-            </p>
+            <p>{course.description}</p>
           </div>
         </div>
+
         <div className="video-play-section">
-          <YouTubePlayer />
+          <YouTubePlayer videoUrl={currentVideo} />
         </div>
+
         <div className="course-page">
-          {modules.map((mod, idx) => (
-            <CourseModule key={idx} {...mod} />
+          {course.curriculum?.map((module, idx) => (
+            <CourseModule
+              key={idx}
+              module={module}
+              onVideoSelect={setCurrentVideo}
+            />
           ))}
         </div>
       </div>
@@ -135,4 +79,5 @@ function OpenCourses() {
     </>
   );
 }
+
 export default OpenCourses;

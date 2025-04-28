@@ -71,6 +71,7 @@ function Courses() {
                 instructor={course.instructor}
                 curriculum={course.curriculum}
                 images={course.imageUrls || []}
+                videos={course.videoURL || []}
               />
             ))
           ) : (

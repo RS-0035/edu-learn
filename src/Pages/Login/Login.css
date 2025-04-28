@@ -97,7 +97,7 @@
 .nav-btn:hover {
   background-color: orange;
   transition: all 0.3s;
-  color:#ffffff;
+  color: #ffffff;
 }
 
 .login-container {
@@ -256,6 +256,18 @@
   color: #3366cc;
   text-decoration: underline;
   margin-left: 5px;
+}
+
+.error-input {
+  border: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: block;
 }
 
 @media (max-width: 750px) {

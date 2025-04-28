@@ -4,15 +4,14 @@ import "./Register.css";
 import sarahImg from "../../assets/png/sarah.png";
 import google from "../../assets/png/google.png";
 import Footer from "../../components/Footer/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../../firebase";
 
 function Register() {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -20,26 +19,39 @@ function Register() {
     agree: false,
   });
 
+  const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  const [form, setForm] = useState({
-    fullName: "",
-    email: "",
-    password: "",
-    agree: false,
-  });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.agree) {
-      console.log("Form submitted", form);
-    } else {
-      alert("Please agree to the Terms of Use and Privacy Policy.");
+  const validate = () => {
+    const newErrors = {};
+
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = "Full Name is required.";
     }
+
+    if (!formData.email) {
+      newErrors.email = "Email is required.";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Invalid email format.";
+    }
+
+    if (!formData.password) {
+      newErrors.password = "Password is required.";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters.";
+    }
+
+    if (!formData.agree) {
+      newErrors.agree = "You must agree to the Terms and Privacy Policy.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // Agar error yo'q bo'lsa true
   };
 
   const togglePasswordVisibility = () => {
@@ -48,12 +60,10 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const { fullName, email, password, agree } = formData;
+    if (!validate()) return; // ❗ Validationdan o'tmasa register qilmaydi
 
-    if (!agree) {
-      alert("Davom etishdan oldin shartlarga rozilik bildiring.");
-      return;
-    }
+    const { email, password } = formData;
+
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -63,19 +73,11 @@ function Register() {
       const user = userCredential.user;
       console.log("User registered:", user);
       alert("Ro‘yxatdan o‘tish muvaffaqiyatli!");
-      setFormData({
-        fullName: "",
-        email: "",
-        password: "",
-        agree: false,
-      });
-
-      // Formani tozalash yoki boshqa sahifaga o'tkazish:
-      // navigate('/account'); yoki formData ni reset qilish
+      setFormData({ fullName: "", email: "", password: "", agree: false });
+      navigate("/account"); // Register bo'lgandan keyin account pagega o'tkazamiz
     } catch (error) {
       console.error("Xatolik:", error.code, error.message);
 
-      // Foydalanuvchiga tushunarli xabar ko‘rsatish:
       if (error.code === "auth/email-already-in-use") {
         alert("Bu email allaqachon ro‘yxatdan o‘tgan.");
       } else if (error.code === "auth/weak-password") {
@@ -92,8 +94,7 @@ function Register() {
       const user = result.user;
       console.log("Google orqali tizimga kirildi:", user);
       alert("Google orqali muvaffaqiyatli tizimga kirdingiz!");
-
-      // navigate('/account'); // yoki foydalanuvchini boshqa sahifaga o'tkazish
+      navigate("/account");
     } catch (error) {
       console.error("Google login xatosi:", error.code, error.message);
       alert("Xatolik: " + error.message);
@@ -104,14 +105,11 @@ function Register() {
     <>
       <Navbar />
       <div className="register-wrapper">
+        {/* Left section (testimonial) */}
         <section className="testimonial-section">
           <div className="testimonial-header">
             <h2>Students Testimonials</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam
-              eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac
-              cum eget habitasse in velit fringilla feugiat senectus in.
-            </p>
+            <p>Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in.</p>
           </div>
 
           <div className="testimonial-box">
@@ -120,7 +118,6 @@ function Register() {
               instructors were knowledgeable and supportive, and the interactive
               learning environment was engaging. I highly recommend it!
             </p>
-
             <div className="testimonial-footer">
               <div className="testimonial-user">
                 <img src={sarahImg} alt="Sarah L" className="user-img" />
@@ -140,6 +137,7 @@ function Register() {
           </div>
         </section>
 
+        {/* Right section (form) */}
         <div className="register-container">
           <div className="register-box">
             <h2 className="register-title">Register</h2>
@@ -147,7 +145,7 @@ function Register() {
               Create an account to unlock exclusive features.
             </p>
 
-            <form onSubmit={handleSubmit} className="register-form">
+            <form onSubmit={handleRegister} className="register-form">
               <label>Full Name</label>
               <input
                 type="text"
@@ -155,8 +153,11 @@ function Register() {
                 value={formData.fullName}
                 onChange={handleChange}
                 placeholder="Enter your Name"
-                required
+                className={errors.fullName ? "error-input" : ""}
               />
+              {errors.fullName && (
+                <span className="error-message">{errors.fullName}</span>
+              )}
 
               <label>Email</label>
               <input
@@ -165,8 +166,9 @@ function Register() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your Email"
-                required
+                className={errors.email ? "error-input" : ""}
               />
+              {errors.email && <span className="error-message">{errors.email}</span>}
 
               <label>Password</label>
               <div className="password-wrapper">
@@ -176,7 +178,7 @@ function Register() {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Enter your Password"
-                  required
+                  className={errors.password ? "error-input" : ""}
                 />
                 <span className="eye-icon" onClick={togglePasswordVisibility}>
                   <i
@@ -186,6 +188,9 @@ function Register() {
                   ></i>
                 </span>
               </div>
+              {errors.password && (
+                <span className="error-message">{errors.password}</span>
+              )}
 
               <div className="checkbox-container">
                 <input
@@ -200,11 +205,7 @@ function Register() {
                 </span>
               </div>
 
-              <button
-                onClick={handleRegister}
-                type="submit"
-                className="register-button"
-              >
+              <button type="submit" className="register-button">
                 Register
               </button>
 
@@ -215,8 +216,8 @@ function Register() {
               </div>
 
               <button
-                onClick={handleGoogleLogin}
                 type="button"
+                onClick={handleGoogleLogin}
                 className="google-button"
               >
                 <img src={google} alt="Google" />
@@ -234,4 +235,5 @@ function Register() {
     </>
   );
 }
+
 export default Register;

@@ -55,6 +55,15 @@ function Home() {
   const [active, setActive] = useState("monthly");
   const [billingType, setBillingType] = useState("monthly");
   const [plans, setPlans] = useState([]);
+  const [randomVideo, setRandomVideo] = useState("");
+
+  const videoUrls = [
+    "https://youtu.be/bCctDua1pxs?si=Ulsnf3UQQzmWyUao",
+    "https://youtu.be/tGNqK0C7nws?si=0aTzAZT3VTrNFSiE",
+    "https://youtu.be/WgkYwqXD6w0?si=qKTzNB8hXvA65T3j",
+    "https://youtu.be/tBJQ7dwNeks?si=qMAxg9Gp_5U-IzhE",
+    // Istagancha YouTube embed linklarini qo'sh
+  ];
 
   const benefitsData = [
     {
@@ -202,6 +211,11 @@ function Home() {
     fetchPlans();
   }, [billingType]);
 
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * videoUrls.length);
+    setRandomVideo(videoUrls[randomIndex]);
+  }, []); // sahifa yuklanganda 1 marta random tanlaydi
+
   return (
     <>
       <Navbar />
@@ -235,7 +249,7 @@ function Home() {
         </section>
       </div>
       <div className="home-video-player">
-        <YouTubePlayer />
+        <YouTubePlayer videoUrl={randomVideo} />
       </div>
 
       <section className="benefits-section" id="benefit-section">

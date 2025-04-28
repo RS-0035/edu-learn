@@ -1,34 +1,38 @@
-import React, { useState } from 'react';
-import './YouTubePlayer.css';
+import React, { useState } from "react";
+import "./YouTubePlayer.css";
 
-const YouTubePlayer = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const videoId = "AM3ZJGxZi-c"; // o'zingizning video ID
+const YouTubePlayer = ({ videoUrl }) => {
+  if (!videoUrl) {
+    return <div className="youtube-player">No video selected</div>;
+  }
 
-  const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  const getYouTubeEmbedUrl = (url) => {
+    try {
+      const videoId = new URL(url).pathname.split("/").pop();
+      console.log(videoUrl);
+      
+      return `https://www.youtube.com/embed/${videoId}`;
+    } catch {
+      return "";
+    }
+  };
+  const embedUrl = getYouTubeEmbedUrl(videoUrl);
 
   return (
     <div className="youtube-wrapper">
-      {isPlaying ? (
-        <div className="video-container">
-          <iframe
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-            title="YouTube video"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-      ) : (
-        <div className="thumbnail" onClick={() => setIsPlaying(true)}>
-          <img src={thumbnail} alt="YouTube Thumbnail" />
-          <div className="play-button">&#9658;</div>
-        </div>
-      )}
+      <div className="video-container">
+        <iframe
+          width="100%"
+          height="450"
+          src={embedUrl}
+          title="YouTube video player"
+          frameBorder="0"
+          allowFullScreen
+        ></iframe>
+      </div>
     </div>
   );
 };
-
 
 ///eferferfefrkgnrkgnrkgrklgn
 export default YouTubePlayer;

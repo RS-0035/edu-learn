@@ -1,34 +1,96 @@
 import React, { useState } from "react";
-import Navbar from "../../components/Navbar/Navbar";
-import "./Login.css";
-import sarahImg from "../../assets/png/sarah.png";
-import google from "../../assets/png/google.png";
-import Footer from "../../components/Footer/Footer";
-import { Link } from "react-router-dom";
-import { signInWithEmailAndPassword, setPersistence,
+import { Link, useNavigate } from "react-router-dom";
+import {
+  signInWithEmailAndPassword,
+  setPersistence,
   browserLocalPersistence,
-  browserSessionPersistence} from "firebase/auth";
+  browserSessionPersistence,
+} from "firebase/auth";
 import { auth } from "../../firebase";
 
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
+
+import sarahImg from "../../assets/png/sarah.png";
+import google from "../../assets/png/google.png";
+
+import "./Login.css";
+
 function Login() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     remember: false,
   });
+  const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const validate = () => {
+    const newErrors = {};
+
+    if (!formData.email) {
+      newErrors.email = "Email is required.";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Invalid email format.";
+    }
+
+    if (!formData.password) {
+      newErrors.password = "Password is required.";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters.";
+    }
+
+    setErrors(newErrors);
+    return newErrors;
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (form.agree) {
-      console.log("Form submitted", form);
-    } else {
-      alert("Please agree to the Terms of Use and Privacy Policy.");
+    const validationErrors = validate();
+
+    if (Object.keys(validationErrors).length > 0) {
+      const firstErrorField = Object.keys(validationErrors)[0];
+      if (firstErrorField) {
+        const field = document.getElementsByName(firstErrorField)[0];
+        if (field) field.focus();
+      }
+      return;
+    }
+
+    const { email, password, remember } = formData;
+
+    try {
+      await setPersistence(
+        auth,
+        remember ? browserLocalPersistence : browserSessionPersistence
+      );
+
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      console.log("Login successful:", userCredential.user);
+      alert("Tizimga muvaffaqiyatli kirildi!");
+      navigate("/account");
+    } catch (error) {
+      console.error("Login error:", error.code, error.message);
+      if (error.code === "auth/invalid-credential") {
+        alert("Email yoki parol noto'g'ri.");
+      } else {
+        alert("Xatolik yuz berdi: " + error.message);
+      }
     }
   };
 
@@ -36,55 +98,23 @@ function Login() {
     setShowPassword((prev) => !prev);
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    const { email, password, remember  } = formData;
-
-    try {
-      await setPersistence(auth, remember ? browserLocalPersistence : browserSessionPersistence);
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-      console.log("Login successful:", user);
-      alert("Tizimga muvaffaqiyatli kirildi!");
-
-      // navigate('/account') — foydalanuvchini boshqa sahifaga o'tkazish
-    } catch (error) {
-      console.error("Xatolik:", error.code, error.message);
-      if (error.code === "auth/user-not-found") {
-        alert("Bunday foydalanuvchi topilmadi.");
-      } else if (error.code === "auth/wrong-password") {
-        alert("Parol noto‘g‘ri.");
-      } else {
-        alert("Xatolik yuz berdi: " + error.message);
-      }
-    }
-  };
-
   return (
     <>
       <Navbar />
       <div className="login-wrapper">
+        {/* Testimonial Section */}
         <section className="testimonial-section">
           <div className="testimonial-header">
             <h2>Students Testimonials</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam
-              eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac
-              cum eget habitasse in velit fringilla feugiat senectus in.
+            Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in.
             </p>
           </div>
 
           <div className="testimonial-box">
             <p className="testimonial-text">
-              The web design course provided a solid foundation for me. The
-              instructors were knowledgeable and supportive, and the interactive
-              learning environment was engaging. I highly recommend it!
+              The web design course provided a solid foundation for me. The instructors were knowledgeable and supportive.
             </p>
-
             <div className="testimonial-footer">
               <div className="testimonial-user">
                 <img src={sarahImg} alt="Sarah L" className="user-img" />
@@ -104,6 +134,7 @@ function Login() {
           </div>
         </section>
 
+        {/* Login Section */}
         <div className="login-container">
           <div className="login-box">
             <h2 className="login-title">Login</h2>
@@ -112,6 +143,7 @@ function Login() {
             </p>
 
             <form onSubmit={handleLogin} className="login-form">
+              {/* Email */}
               <label>Email</label>
               <input
                 type="email"
@@ -119,9 +151,11 @@ function Login() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your Email"
-                required
+                className={errors.email ? "error-input" : ""}
               />
+              {errors.email && <span className="error-message">{errors.email}</span>}
 
+              {/* Password */}
               <label>Password</label>
               <div className="password-wrapper">
                 <input
@@ -130,45 +164,44 @@ function Login() {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Enter your Password"
-                  required
+                  className={errors.password ? "error-input" : ""}
                 />
                 <span className="eye-icon" onClick={togglePasswordVisibility}>
-                  <i
-                    className={`fa-solid ${
-                      showPassword ? "fa-eye" : "fa-eye-slash"
-                    }`}
-                  ></i>
+                  <i className={`fa-solid ${showPassword ? "fa-eye" : "fa-eye-slash"}`}></i>
                 </span>
               </div>
+              {errors.password && <span className="error-message">{errors.password}</span>}
 
+              {/* Remember Me */}
               <div className="checkbox-container">
                 <input
                   type="checkbox"
-                  name="agree"
+                  name="remember"
                   checked={formData.remember}
                   onChange={handleChange}
                 />
                 <span>Remember Me</span>
               </div>
 
-              <button
-                onClick={handleLogin}
-                type="submit"
-                className="login-button"
-              >
+              {/* Login Button */}
+              <button type="submit" className="login-button">
                 Login
               </button>
 
+              {/* Divider */}
               <div className="divider">
                 <hr />
                 <span>OR</span>
                 <hr />
               </div>
 
+              {/* Google Login Button */}
               <button type="button" className="google-button">
                 <img src={google} alt="Google" />
                 Login with Google
               </button>
+
+              {/* Register Link */}
               <p className="login-link">
                 Don't have an account? <Link to="/register">Register</Link>
               </p>

@@ -146,7 +146,9 @@ textarea {
   justify-content: center;
   gap: 10px;
 }
-
+.error-input {
+  border: 1px solid red !important;
+}
 /* hugfurefg */
 
 @media (max-width: 1214px) {
