@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CourseModule.css";
 
-const CourseModule = ({ module, onVideoSelect }) => {
-  const [selectedLessonIndex, setSelectedLessonIndex] = useState(0);
-
-  const handleVideoSelect = (videoURL, index) => {
-    setSelectedLessonIndex(index);
-    onVideoSelect(videoURL);
-  };
-
+const CourseModule = ({
+  module,
+  moduleIndex,
+  activeModuleIndex,
+  activeLessonIndex,
+  onVideoSelect,
+}) => {
   return (
     <div className="course-module">
       <div className="course-number">
@@ -19,8 +18,14 @@ const CourseModule = ({ module, onVideoSelect }) => {
         {module.videos?.map((video, index) => (
           <li
             key={index}
-            className={`lesson ${selectedLessonIndex === index ? "highlighted" : ""}`}
-            onClick={() => handleVideoSelect(video.videoUrl, index)}
+            className={`lesson ${
+              activeModuleIndex === moduleIndex && activeLessonIndex === index
+                ? "highlighted"
+                : ""
+            }`}
+            onClick={() =>
+              onVideoSelect(moduleIndex, index, video.videoUrl)
+            }
           >
             <div>
               <p className="lesson-name">{video.title}</p>

@@ -13,6 +13,8 @@ function OpenCourses() {
   const [course, setCourse] = useState(null);
   const [mainVideoUrl, setMainVideoUrl] = useState(null);
   const [currentVideo, setCurrentVideo] = useState("");
+  const [activeModuleIndex, setActiveModuleIndex] = useState(0);
+  const [activeLessonIndex, setActiveLessonIndex] = useState(0);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -44,6 +46,12 @@ function OpenCourses() {
     fetchCourse();
   }, [id]);
 
+  const handleVideoSelect = (moduleIdx, lessonIdx, videoURL) => {
+    setActiveModuleIndex(moduleIdx);
+    setActiveLessonIndex(lessonIdx);
+    setCurrentVideo(videoURL);
+  };
+
   if (!course) return <p>Loading course...</p>;
 
   console.log(currentVideo);
@@ -70,7 +78,10 @@ function OpenCourses() {
             <CourseModule
               key={idx}
               module={module}
-              onVideoSelect={setCurrentVideo}
+              activeModuleIndex={activeModuleIndex}
+              activeLessonIndex={activeLessonIndex}
+              onVideoSelect={handleVideoSelect}
+              moduleIndex={idx}
             />
           ))}
         </div>

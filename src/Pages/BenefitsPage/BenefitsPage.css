@@ -1,0 +1,160 @@
+.benefits-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+.benefits-container-header {
+  width: 100%;
+  margin: 80px 0;
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+.benefits-top-left {
+  width: 50%;
+  padding-bottom: 40px;
+}
+.benefits-top-left h2 {
+  font-size: 38px;
+  font-weight: bolder;
+}
+.benefits-top-right {
+  width: 50%;
+  padding-bottom: 40px;
+}
+.benefits-top-right p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+}
+.benefits-wrapper {
+  display: flex;
+  padding: 80px;
+  margin: 80px auto;
+  gap: 40px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 1px 1px 1px lightgray;
+  width: 100%;
+  max-width: 1440px;
+}
+
+.benefits-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.benefit-item {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+.benefit-item:hover {
+  transform: translateY(-5px);
+}
+
+.benefit-index {
+  font-size: 50px;
+  font-weight: bold;
+  color: #1a1a1a;
+  display: block;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.benefit-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+}
+
+.benefit-detail {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+.arrow-container {
+  margin-top: auto; /* bu eng pastga tushiradi */
+  align-self: flex-end; /* o'ng tomonga joylashtiradi */
+}
+
+@media (max-width: 1214px) {
+  .benefits-top-left h2 {
+    font-size: 30px;
+  }
+  .benefits-top-right p {
+    font-size: 14px;
+  }
+}
+@media (max-width: 830px) {
+  .benefits-container-header {
+    width: 100%;
+    margin-top: 40px;
+    padding: 40px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .benefits-container {
+    padding: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .benefits-container-header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  .benefits-top-left {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0px;
+    font-size: 26px;
+  }
+  .benefits-top-right {
+    width: 100%;
+    justify-content: center;
+    padding: 5px;
+  }
+}
+@media (max-width: 480px) {
+  .benefits-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* elementlar orasida masofa */
+    padding: 1rem;
+  }
+
+  .benefits-item {
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .benefits-top-left {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .benefits-container-header {
+    padding: 20px;
+    margin-top: 20px;
+  }
+}

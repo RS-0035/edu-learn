@@ -121,14 +121,14 @@
   color: #555;
 }
 
-.view-all-btn {
+/* .view-all-btn {
   background-color: white;
   border: 1px solid #ddd;
   padding: 10px 16px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
-}
+} */
 
 .benefits-grid {
   display: grid;
@@ -209,6 +209,10 @@
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  font-size: 14px;
 }
 
 .home-courses-grid {
@@ -254,6 +258,7 @@
   color: #777;
   margin-bottom: 10px;
   flex-wrap: wrap;
+  margin-top: 15px;
 }
 
 .home-course-meta span {
@@ -457,11 +462,13 @@
     font-size: 1rem;
     width: 100%;
   }
-
+/* 
   .view-all-btn {
     align-self: stretch;
     padding: 0.75rem 1rem;
-  }
+  } */
+
+
 
   .home-courses-grid {
     display: flex;

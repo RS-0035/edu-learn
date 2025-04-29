@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 // Firebase
 import { db } from "../../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 
 // components
 import Navbar from "../../components/Navbar/Navbar";
@@ -56,6 +56,7 @@ function Home() {
   const [billingType, setBillingType] = useState("monthly");
   const [plans, setPlans] = useState([]);
   const [randomVideo, setRandomVideo] = useState("");
+  const [coursesData, setCoursesData] = useState([]);
 
   const videoUrls = [
     "https://youtu.be/bCctDua1pxs?si=Ulsnf3UQQzmWyUao",
@@ -104,48 +105,48 @@ function Home() {
     },
   ];
 
-  const coursesData = [
-    {
-      id: 1,
-      image: first,
-      duration: "4 Weeks",
-      level: "Beginner",
-      author: "John Smith",
-      title: "Web Design Fundamentals",
-      description:
-        "Learn the fundamentals of web design, including HTML, CSS, and responsive design principles. Develop the skills to create visually appealing and user-friendly websites.",
-    },
-    {
-      id: 2,
-      image: first,
-      duration: "6 Weeks",
-      level: "Intermediate",
-      author: "Emily Johnson",
-      title: "UI/UX Design",
-      description:
-        "Master the art of creating intuitive user interfaces (UI) and enhancing user experiences (UX). Learn design principles, wireframing, prototyping, and usability testing techniques.",
-    },
-    {
-      id: 3,
-      image: first,
-      duration: "8 Weeks",
-      level: "Intermediate",
-      author: "David Brown",
-      title: "Mobile App Development",
-      description:
-        "Dive into the world of mobile app development. Learn to build native iOS and Android applications using industry-leading frameworks like Swift and Kotlin.",
-    },
-    {
-      id: 4,
-      image: first,
-      duration: "10 Weeks",
-      level: "Beginner",
-      author: "Sarah Thompson",
-      title: "Graphic Design for Beginners",
-      description:
-        "Discover the fundamentals of graphic design, including typography, color theory, layout design, and image manipulation techniques. Create visually stunning designs for print and digital media.",
-    },
-  ];
+  // const coursesData = [
+  //   {
+  //     id: 1,
+  //     image: first,
+  //     duration: "4 Weeks",
+  //     level: "Beginner",
+  //     author: "John Smith",
+  //     title: "Web Design Fundamentals",
+  //     description:
+  //       "Learn the fundamentals of web design, including HTML, CSS, and responsive design principles. Develop the skills to create visually appealing and user-friendly websites.",
+  //   },
+  //   {
+  //     id: 2,
+  //     image: first,
+  //     duration: "6 Weeks",
+  //     level: "Intermediate",
+  //     author: "Emily Johnson",
+  //     title: "UI/UX Design",
+  //     description:
+  //       "Master the art of creating intuitive user interfaces (UI) and enhancing user experiences (UX). Learn design principles, wireframing, prototyping, and usability testing techniques.",
+  //   },
+  //   {
+  //     id: 3,
+  //     image: first,
+  //     duration: "8 Weeks",
+  //     level: "Intermediate",
+  //     author: "David Brown",
+  //     title: "Mobile App Development",
+  //     description:
+  //       "Dive into the world of mobile app development. Learn to build native iOS and Android applications using industry-leading frameworks like Swift and Kotlin.",
+  //   },
+  //   {
+  //     id: 4,
+  //     image: first,
+  //     duration: "10 Weeks",
+  //     level: "Beginner",
+  //     author: "Sarah Thompson",
+  //     title: "Graphic Design for Beginners",
+  //     description:
+  //       "Discover the fundamentals of graphic design, including typography, color theory, layout design, and image manipulation techniques. Create visually stunning designs for print and digital media.",
+  //   },
+  // ];
 
   const testimonialsData = [
     {
@@ -212,9 +213,37 @@ function Home() {
   }, [billingType]);
 
   useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "courses"));
+        const fetchedCourses = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setCoursesData(fetchedCourses);
+      } catch (error) {
+        console.error("Xatolik:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
+  console.log(coursesData);
+
+  useEffect(() => {
     const randomIndex = Math.floor(Math.random() * videoUrls.length);
     setRandomVideo(videoUrls[randomIndex]);
   }, []); // sahifa yuklanganda 1 marta random tanlaydi
+
+  const getYouTubeThumbnail = (url) => {
+    try {
+      const videoId = new URL(url).pathname.split("/").pop();
+      return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    } catch {
+      return "";
+    }
+  };
 
   return (
     <>
@@ -262,7 +291,9 @@ function Home() {
               cum eget habitasse in velit fringilla feugiat senectus in.
             </p>
           </div>
-          <button className="view-all-btn">View All</button>
+          <Link to="/benefits" className="view-all-btn">
+            View All
+          </Link>
         </div>
 
         <div className="benefits-grid">
@@ -295,29 +326,45 @@ function Home() {
               cum eget habitasse in velit fringilla feugiat senectus in.
             </p>
           </div>
-          <button className="view-all-btn">View All</button>
+          <Link to="/courses" className="view-all-btn">
+            View All
+          </Link>
         </div>
 
         <div className="home-courses-grid">
-          {coursesData.map((course) => (
-            <div className="home-course-card" key={course.id}>
-              <img
-                src={course.image}
-                alt={course.title}
-                className="home-course-image"
-              />
-              <div className="home-course-info">
-                <div className="home-course-meta">
-                  <span>{course.duration}</span>
-                  <span>{course.level}</span>
-                  <span>By {course.author}</span>
+          {coursesData.map((course) => {
+            const videoUrls = course.videoURL || [];
+            const getYouTubeThumbnail = (url) => {
+              try {
+                const videoId = new URL(url).pathname.split("/").pop();
+                return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+              } catch {
+                return "";
+              }
+            };
+
+            return (
+              <div className="home-course-card" key={course.id}>
+                {videoUrls.length > 0 && (
+                  <img
+                    src={getYouTubeThumbnail(videoUrls[0])}
+                    alt="Course Preview"
+                    className="home-course-thumbnail"
+                  />
+                )}
+                <div className="home-course-info">
+                  <div className="home-course-meta">
+                    <span>{course.duration}</span>
+                    <span>{course.level}</span>
+                    <span>By {course.instructor}</span>
+                  </div>
+                  <h3>{course.title}</h3>
+                  <p>{course.description}</p>
+                  <button className="get-now-btn">Get it Now</button>
                 </div>
-                <h3>{course.title}</h3>
-                <p>{course.description}</p>
-                <button className="get-now-btn">Get it Now</button>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -331,7 +378,9 @@ function Home() {
               cum eget habitasse in velit fringilla feugiat senectus in.
             </p>
           </div>
-          <button className="view-all-btn">View All</button>
+          <Link to="/testimonials" className="view-all-btn">
+            View All
+          </Link>
         </div>
         <section className="home-testimonial-section">
           <div className="home-testimonials-grid">
@@ -347,7 +396,12 @@ function Home() {
                     />
                     <strong>{item.name}</strong>
                   </div>
-                  <button className="read-btn">Read Full Story</button>
+                  <Link
+                    to={`/testimonials/${item.id}`}
+                    className="read-btn"
+                  >
+                    Read Full Story
+                  </Link>
                 </div>
               </div>
             ))}

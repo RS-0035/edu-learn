@@ -67,7 +67,7 @@
         <div className="curriculum-section">
           <h3>Curriculum</h3>
           <div className="curriculum-list">
-            {curriculum.map((item, index) => (
+            {curriculum?.map((item, index) => (
               <div key={index} className="curriculum-item">
                 <span className="curriculum-number">{`0${index + 1}`}</span>
                 <span className="curriculum-text">{item.title}</span>

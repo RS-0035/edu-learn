@@ -11,6 +11,9 @@ import Register from "./Pages/Register/Register";
 import OpenCourses from "./Pages/OpenCourses/OpenCourses";
 import ScrollToHashElement from "./components/ScrollToHashElement/ScrollToHashElement";
 import NotFound from "./Pages/NotFound/NotFound";
+import BenefitsPage from "./Pages/BenefitsPage/BenefitsPage";
+import TestimonialsPage from "./Pages/TestimonialsPage/TestimonialsPage";
+import TestimonialDetail from "./Pages/TestimonialDetail/TestimonialDetail";
 
 function App() {
   return (
@@ -23,8 +26,11 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/open-courses/:id" element={<OpenCourses />} />
+        <Route path="/benefits" element={<BenefitsPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/testimonials" element={<TestimonialsPage />} />
+        <Route path="/testimonials/:id" element={<TestimonialDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
