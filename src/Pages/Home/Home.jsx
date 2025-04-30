@@ -20,6 +20,7 @@ import sarahImg from "../../assets/png/sarah.png";
 import first from "../../assets/png/first.png";
 import arrow from "../../assets/png/arrow.png";
 import lightning from "../../assets/png/lighting.png";
+import PaymentModal from "../../components/PaymentModal/PaymentModal";
 
 const faqs = [
   {
@@ -57,6 +58,7 @@ function Home() {
   const [plans, setPlans] = useState([]);
   const [randomVideo, setRandomVideo] = useState("");
   const [coursesData, setCoursesData] = useState([]);
+  const [selectedPlan, setSelectedPlan] = useState(null);
 
   const videoUrls = [
     "https://youtu.be/bCctDua1pxs?si=Ulsnf3UQQzmWyUao",
@@ -360,7 +362,7 @@ function Home() {
                   </div>
                   <h3>{course.title}</h3>
                   <p>{course.description}</p>
-                  <button className="get-now-btn">Get it Now</button>
+                  <Link to='/courses' className="get-now-btn">Get it Now</Link>
                 </div>
               </div>
             );
@@ -396,10 +398,7 @@ function Home() {
                     />
                     <strong>{item.name}</strong>
                   </div>
-                  <Link
-                    to={`/testimonials/${item.id}`}
-                    className="read-btn"
-                  >
+                  <Link to={`/testimonials/${item.id}`} className="read-btn">
                     Read Full Story
                   </Link>
                 </div>
@@ -447,9 +446,16 @@ function Home() {
               title={plan.title}
               price={plan.price}
               features={plan.features}
+              onSelect={() => setSelectedPlan(plan)}
             />
           ))}
         </div>
+        {selectedPlan && (
+          <PaymentModal
+            plan={selectedPlan}
+            onClose={() => setSelectedPlan(null)}
+          />
+        )}
 
         <div className="faq-section" id="faq">
           <div className="faq-wrapper">

@@ -10,6 +10,7 @@ import FAQItems from "../../components/FaqItems/FaqItems";
 // Firebase
 import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import PaymentModal from "../../components/PaymentModal/PaymentModal";
 
 const faqs = [
   {
@@ -43,6 +44,7 @@ const faqs = [
 
 function Pricing() {
   const [billingType, setBillingType] = useState("monthly");
+  const [selectedPlan, setSelectedPlan] = useState(null);
   const [plans, setPlans] = useState([]);
 
   useEffect(() => {
@@ -113,9 +115,16 @@ function Pricing() {
               title={plan.title}
               price={plan.price}
               features={plan.features}
+              onSelect={() => setSelectedPlan(plan)}
             />
           ))}
         </div>
+        {selectedPlan && (
+          <PaymentModal
+            plan={selectedPlan}
+            onClose={() => setSelectedPlan(null)}
+          />
+        )}
 
         <div className="faq-section">
           <div className="faq-wrapper">

@@ -293,6 +293,8 @@
   transition: background-color 0.2s;
   margin-top: 20px;
   margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
 }
 
 .get-now-btn:hover {
