@@ -111,6 +111,13 @@
   font-weight: 600;
 }
 
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px; /* Sizning sahifangizga mos keladigan o'lcham */
+}
+
 .faq-right {
   flex: 2 1 500px;
 }

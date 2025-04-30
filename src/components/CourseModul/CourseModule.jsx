@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./CourseModule.css";
 
 const CourseModule = ({
@@ -8,31 +8,37 @@ const CourseModule = ({
   activeLessonIndex,
   onVideoSelect,
 }) => {
+  const isActiveLesson = (index) =>
+    activeModuleIndex === moduleIndex && activeLessonIndex === index;
+
+  const handleLessonClick = (index, videoUrl) => {
+    onVideoSelect(moduleIndex, index, videoUrl);
+  };
+
   return (
     <div className="course-module">
       <div className="course-number">
-        {module.week.toString().padStart(2, "0")}
+        {String(module.week).padStart(2, "0")}
       </div>
+
       <h3 className="course-title">{module.title}</h3>
+
       <ul className="lessons-list">
         {module.videos?.map((video, index) => (
           <li
             key={index}
-            className={`lesson ${
-              activeModuleIndex === moduleIndex && activeLessonIndex === index
-                ? "highlighted"
-                : ""
-            }`}
-            onClick={() =>
-              onVideoSelect(moduleIndex, index, video.videoUrl)
-            }
+            className={`lesson ${isActiveLesson(index) ? "highlighted" : ""}`}
+            onClick={() => handleLessonClick(index, video.videoUrl)}
           >
             <div>
               <p className="lesson-name">{video.title}</p>
               <span className="lesson-sub">Lesson {index + 1}</span>
             </div>
             <div className="lesson-duration">
-              <span>⏱</span> {video.duration}
+              <span role="img" aria-label="duration">
+                ⏱
+              </span>{" "}
+              {video.duration}
             </div>
           </li>
         ))}

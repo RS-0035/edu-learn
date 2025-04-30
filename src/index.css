@@ -1,15 +1,19 @@
 @import "tailwindcss";
 
+/* Base Reset and Global Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Be Vietnam Pro", sans-serif;
 }
+
 body {
   background-color: #f7f7f8;
 }
+
+/* Container Utility Class */
 .container {
   max-width: 1440px;
-  margin: 0 auto;
+  margin-inline: auto;
 }

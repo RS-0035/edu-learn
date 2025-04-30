@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Pricing.css";
 
+import { Circles } from "react-loader-spinner";
+
 // Components
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
@@ -11,6 +13,7 @@ import FAQItems from "../../components/FaqItems/FaqItems";
 import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import PaymentModal from "../../components/PaymentModal/PaymentModal";
+import Skeleton from "../../components/Skeleton/Skeleton";
 
 const faqs = [
   {
@@ -46,10 +49,12 @@ function Pricing() {
   const [billingType, setBillingType] = useState("monthly");
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [plans, setPlans] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPlans = async () => {
       try {
+        setLoading(true);
         const docRef = doc(db, "pricingPlans", billingType);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
@@ -59,6 +64,8 @@ function Pricing() {
         }
       } catch (error) {
         console.error("Error fetching pricing plans:", error);
+      } finally {
+        setLoading(false); // Yuklashni tugatish
       }
     };
 
@@ -109,15 +116,29 @@ function Pricing() {
         </div>
 
         <div className="pricing-container">
-          {plans.map((plan, index) => (
-            <PlanCard
-              key={index}
-              title={plan.title}
-              price={plan.price}
-              features={plan.features}
-              onSelect={() => setSelectedPlan(plan)}
-            />
-          ))}
+          {loading ? ( // Ma'lumotlar yuklanayotgan bo'lsa, skeleton ko'rsatiladi
+            <div className="loader-container">
+              <Circles
+                height="100"
+                width="100"
+                color="#00BFFF"
+                ariaLabel="circles-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            </div>
+          ) : (
+            plans.map((plan, index) => (
+              <PlanCard
+                key={index}
+                title={plan.title}
+                price={plan.price}
+                features={plan.features}
+                onSelect={() => setSelectedPlan(plan)}
+              />
+            ))
+          )}
         </div>
         {selectedPlan && (
           <PaymentModal
