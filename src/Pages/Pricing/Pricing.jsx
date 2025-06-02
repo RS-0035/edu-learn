@@ -79,17 +79,19 @@ function Pricing() {
       <section className="pricing-hero-section">
         <div className="pricing-intro">
           <div className="pricing-left">
-            <h2>Our Pricings</h2>
+            <h2>Bizning Narxlarimiz</h2>
           </div>
           <div className="pricing-right">
             <p>
-              Welcome to SkillBridge’s Pricing Plan page, where we offer two
-              comprehensive options to cater to your needs: Free and Pro. We
-              believe in providing flexible and affordable pricing options for
-              our services. Whether you're an individual looking to enhance your
-              skills or a business seeking professional development solutions,
-              we have a plan that suits you. Explore our pricing options below
-              and choose the one that best fits your requirements.
+              EduLearnning Narxlar rejasi sahifasiga xush kelibsiz, biz ikkita
+              taklif qilamiz Ehtiyojlaringizni qondirish uchun keng qamrovli
+              variantlar: Bepul va Pro. Biz uchun moslashuvchan va arzon
+              narxlardagi variantlarni taqdim etishga ishonamiz bizning
+              xizmatlarimiz. Siz o'zingizni yaxshilashga intilayotgan shaxs
+              bo'lasizmi malaka oshirish yoki kasbiy rivojlanish yechimlarini
+              qidirayotgan biznes, bizda sizga mos reja bor. Bizning narxlash
+              variantlarini quyida ko'rib chiqing va sizning talablaringizga eng
+              mos keladiganini tanlang.
             </p>
           </div>
         </div>
@@ -102,7 +104,7 @@ function Pricing() {
               }`}
               onClick={() => setBillingType("monthly")}
             >
-              Monthly
+              Oylik
             </button>
             <button
               className={`toggle-option ${
@@ -110,7 +112,7 @@ function Pricing() {
               }`}
               onClick={() => setBillingType("yearly")}
             >
-              Yearly
+              Yillik
             </button>
           </div>
         </div>
@@ -150,12 +152,12 @@ function Pricing() {
         <div className="faq-section">
           <div className="faq-wrapper">
             <div className="faq-left">
-              <h2>Frequently Asked Questions</h2>
+              <h2>Tez-tez so'raladigan savollar</h2>
               <p>
-                Still you have any questions? Contact our Team via <br />
+              Hali ham savollaringiz bormi? Bizning jamoamiz bilan bog'laning<br />
                 <strong>support@skillbridge.com</strong>
               </p>
-              <button className="all-faqs-btn">See All FAQ’s</button>
+              <button className="all-faqs-btn">Barcha tez-tez so'raladigan savollarni ko'ring</button>
             </div>
             <div className="faq-right">
               {faqs.map((faq, index) => (

@@ -15,53 +15,53 @@ function AboutUs() {
   const achievements = [
     {
       icon: toj,
-      title: "Trusted by Thousands",
+      title: "Minglab odamlar tomonidan ishoniladi",
       description:
-        "We have successfully served thousands of students, helping them unlock their potential and achieve their career goals.",
+        "Biz minglab talabalarga muvaffaqiyatli xizmat qilib, ularning potentsialini ochishga va martaba maqsadlariga erishishga yordam berdik.",
     },
     {
       icon: medal,
-      title: "Award-Winning Courses",
+      title: "Mukofotga sazovor bo'lgan kurslar",
       description:
-        "Our courses have received recognition and accolades in the industry for their quality, depth of content, and effective teaching methodologies.",
+        "Bizning kurslarimiz sifati, mazmunining chuqurligi va samarali o'qitish metodologiyasi uchun sanoatda e'tirof va maqtovlarga sazovor bo'ldi.",
     },
     {
       icon: comic,
-      title: "Positive Student Feedback",
+      title: "Talabalarning ijobiy fikr-mulohazalari",
       description:
-        "We take pride in the positive feedback we receive from our students, who appreciate the practicality and relevance of our course materials.",
+        "Biz kurs materiallarining amaliyligi va dolzarbligini qadrlaydigan talabalarimizdan olgan ijobiy fikr-mulohazalar bilan faxrlanamiz.",
     },
     {
       icon: shield,
-      title: "Industry Partnerships",
+      title: "Sanoat hamkorliklari",
       description:
-        "We have established strong partnerships with industry leaders, enabling us to provide our students with access to the latest tools and technologies.",
+        "Biz soha yetakchilari bilan mustahkam hamkorlik aloqalarini o‘rnatdik, bu esa o‘quvchilarimizga eng so‘nggi vositalar va texnologiyalardan foydalanish imkoniyatini taqdim etish imkonini berdi.",
     },
   ];
   const goals = [
     {
       icon: bag,
-      title: "Provide Practical Skills",
+      title: "Amaliy ko'nikmalarni taqdim eting",
       description:
-        "We focus on delivering practical skills that are relevant to the current industry demands. Our courses are designed to equip learners with the knowledge and tools needed to excel in their chosen field.",
+        "Biz hozirgi sanoat talablariga mos keladigan amaliy ko'nikmalarni berishga e'tibor qaratamiz. Bizning kurslarimiz o'quvchilarni o'zlari tanlagan sohada ustunlik qilishlari uchun zarur bo'lgan bilim va vositalar bilan jihozlash uchun mo'ljallangan.",
     },
     {
       icon: book,
-      title: "Faster Creative Problem-Solving",
+      title: "Tezroq ijodiy muammolarni hal qilish",
       description:
-        "We encourage creative thinking and problem-solving abilities, allowing our students to tackle real-world challenges with confidence and innovation.",
+        "Biz ijodiy fikrlash va muammolarni hal qilish qobiliyatlarini rag'batlantiramiz, bu esa o'quvchilarimizga haqiqiy dunyo muammolarini ishonch va innovatsiya bilan hal qilish imkonini beradi.",
     },
     {
       icon: puzzle,
-      title: "Promote Collaboration and Community",
+      title: "Hamkorlik va hamjamiyatni rag'batlantirish",
       description:
-        "We believe in the power of collaboration and peer learning. Our platform fosters a supportive and inclusive community where learners can connect, share insights, and grow together.",
+        "Biz hamkorlik va tengdoshlarni o'rganish kuchiga ishonamiz. Bizning platformamiz o‘quvchilar bog‘lanishi, tushunchalarini baham ko‘rishi va birga o‘sishi mumkin bo‘lgan qo‘llab-quvvatlovchi va inklyuziv hamjamiyatni rivojlantiradi.",
     },
     {
       icon: lamp,
-      title: "Stay Ahead of the Curve",
+      title: "Egri chiziqdan oldinda turing",
       description:
-        "The digital landscape is constantly evolving, and we strive to stay at the forefront of industry trends. We regularly update our course content to ensure our students receive the latest knowledge and skills.",
+        "Raqamli landshaft doimo rivojlanib bormoqda va biz sanoat tendentsiyalarining oldingi saflarida qolishga intilamiz. Talabalarimizning so'nggi bilim va ko'nikmalarga ega bo'lishini ta'minlash uchun biz kurs mazmunini muntazam yangilab boramiz.",
     },
   ];
 
@@ -71,26 +71,26 @@ function AboutUs() {
       <div className="about-us-section" id="company">
         <div className="about-us-intro">
           <div className="about-us-left">
-            <h2>About Skillbridge</h2>
+            <h2>Malaka haqida</h2>
           </div>
           <div className="about-us-right">
             <p>
-              Welcome to our platform, where we are passionate about empowering
-              individuals to master the world of design and development. We
-              offer a wide range of online courses designed to equip learners
-              with the skills and knowledge needed to succeed in the
-              ever-evolving digital landscape.
+            Bizning platformamizga xush kelibsiz, u erda biz imkoniyatlarni kuchaytirishga ishtiyoqimiz bor
+              dizayn va rivojlanish dunyosini o'zlashtirish uchun shaxslar. Biz
+              o'quvchilarni jihozlash uchun mo'ljallangan keng doiradagi onlayn kurslarni taklif qiladi
+              muvaffaqiyatga erishish uchun zarur bo'lgan ko'nikma va bilimlarga ega
+              doimiy rivojlanayotgan raqamli landshaft.
             </p>
           </div>
         </div>
       </div>
       <div className="ag-section-wrapper">
         <section className="ag-achievements-section" id="achievements">
-          <h2 className="ag-section-title">Achievements</h2>
+          <h2 className="ag-section-title">Yutuqlar</h2>
           <p className="ag-section-subtitle">
-            Our commitment to excellence has led us to achieve significant
-            milestones along our journey. Here are some of our notable
-            achievements.
+          Bizning mukammallikka bo'lgan sodiqligimiz bizni sezilarli yutuqlarga erishdi
+            sayohatimiz davomidagi muhim bosqichlar. Mana bizning e'tiborga loyiqlarimiz
+            yutuqlar.
           </p>
           <div className="ag-card-container">
             {achievements.map((item, idx) => (
@@ -106,13 +106,13 @@ function AboutUs() {
         </section>
 
         <section className="ag-goals-section" id="goals">
-          <h2 className="ag-section-title">Our Goals</h2>
+          <h2 className="ag-section-title">Bizning Maqsadlarimiz</h2>
           <p className="ag-section-subtitle">
-            At SkillBridge, our goal is to empower individuals from all
-            backgrounds to thrive in the world of design and development. We
-            believe that education should be accessible and transformative,
-            enabling learners to pursue their passions and make a meaningful
-            impact. Through our carefully crafted courses, we aim to
+          SkillBridge-da bizning maqsadimiz barcha odamlarning imkoniyatlarini kengaytirishdir
+            dizayn va rivojlanish dunyosida rivojlanish uchun fon. Biz
+            ta'lim qulay va o'zgaruvchan bo'lishi kerak, deb hisoblayman,
+            o'quvchilarga o'z ehtiroslarini ta'qib qilish va mazmunli qilish imkonini beradi
+            ta'sir. Ehtiyotkorlik bilan tayyorlangan kurslarimiz orqali biz maqsad qilamiz
           </p>
           <div className="ag-card-container">
             {goals.map((item, idx) => (

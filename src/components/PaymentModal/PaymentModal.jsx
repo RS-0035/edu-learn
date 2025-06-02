@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import './PaymentModal.css';
+import React, { useState } from "react";
+import "./PaymentModal.css";
 
 const PaymentModal = ({ plan, onClose }) => {
-  const [cardNumber, setCardNumber] = useState('');
-  const [cvc, setCvc] = useState('');
-  const [cardHolder, setCardHolder] = useState('');
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
+  const [cardNumber, setCardNumber] = useState("");
+  const [cvc, setCvc] = useState("");
+  const [cardHolder, setCardHolder] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ const PaymentModal = ({ plan, onClose }) => {
         <form className="payment-form" onSubmit={handleSubmit}>
           <div className="payment-row">
             <div className="payment-field">
-              <label>Card Number</label>
+              <label>Karta raqami</label>
               <input
                 type="text"
                 maxLength={19}
@@ -51,7 +51,7 @@ const PaymentModal = ({ plan, onClose }) => {
           </div>
 
           <div className="payment-field payment-full">
-            <label>Card Holder Name</label>
+            <label>Karta egasining ismi</label>
             <input
               type="text"
               placeholder="John Doe"
@@ -62,29 +62,56 @@ const PaymentModal = ({ plan, onClose }) => {
           </div>
 
           <div className="payment-field payment-full">
-            <label>Expiration Date</label>
+            <label>Tugash muddati</label>
             <div className="payment-expiry">
-              <select value={month} onChange={(e) => setMonth(e.target.value)} required>
-                <option value="">Month</option>
-                {['01','02','03','04','05','06','07','08','09','10','11','12'].map(m => (
-                  <option key={m} value={m}>{m}</option>
+              <select
+                value={month}
+                onChange={(e) => setMonth(e.target.value)}
+                required
+              >
+                <option value="">Oy</option>
+                {[
+                  "01",
+                  "02",
+                  "03",
+                  "04",
+                  "05",
+                  "06",
+                  "07",
+                  "08",
+                  "09",
+                  "10",
+                  "11",
+                  "12",
+                ].map((m) => (
+                  <option key={m} value={m}>
+                    {m}
+                  </option>
                 ))}
               </select>
-              <select value={year} onChange={(e) => setYear(e.target.value)} required>
-                <option value="">Year</option>
+              <select
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+                required
+              >
+                <option value="">Yil</option>
                 {[...Array(10)].map((_, i) => {
                   const y = new Date().getFullYear() + i;
-                  return <option key={y} value={y}>{y}</option>;
+                  return (
+                    <option key={y} value={y}>
+                      {y}
+                    </option>
+                  );
                 })}
               </select>
             </div>
           </div>
 
           <button type="submit" className="payment-submit">
-            COMPLETE ORDER (TOTAL ${plan.price})
+            TO‘LIQ tugatish (Umumiy ${plan.price})
           </button>
           <button type="button" className="payment-cancel" onClick={onClose}>
-            Cancel
+          Bekor qilish
           </button>
         </form>
       </div>

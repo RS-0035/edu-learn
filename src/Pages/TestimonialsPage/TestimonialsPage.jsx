@@ -14,25 +14,25 @@ function TestimonialsPage() {
     {
       id: 1,
       name: "Sarah L",
-      text: "The web design course provided a solid foundation for me. The instructors were knowledgeable and supportive, and the interactive learning environment was engaging. I highly recommend it!",
+      text: "Veb-dizayn kursi men uchun mustahkam poydevor yaratdi. O'qituvchilar bilimdon va qo'llab-quvvatladilar va interaktiv o'quv muhiti qiziqarli edi. Men buni juda tavsiya qilaman!",
       image: sarahImg,
     },
     {
       id: 2,
       name: "Jason M",
-      text: "The UI/UX design course exceeded my expectations. The instructor’s expertise and practical assignments helped me improve my design skills. I feel more confident in my career now. Thank you!",
+      text: "UI/UX dizayn kursi mening kutganimdan oshib ketdi. O'qituvchining tajribasi va amaliy topshiriqlari dizayn mahoratimni oshirishga yordam berdi. Endi o'zimni faoliyatimga ishonchim ko'proq his qilyapman. rahmat!",
       image: sarahImg,
     },
     {
       id: 3,
       name: "Emily R",
-      text: "The mobile app development course was fantastic! The step-by-step tutorials and hands-on projects helped me grasp the concepts easily. I’m now building my own app. Great course!",
+      text: "Mobil ilovalarni ishlab chiqish kursi ajoyib bo'ldi! Bosqichma-bosqich qo'llanmalar va amaliy loyihalar menga tushunchalarni osongina tushunishimga yordam berdi. Endi men o'z ilovamni yaratyapman. Ajoyib kurs!",
       image: sarahImg,
     },
     {
       id: 4,
       name: "Michael K",
-      text: "I enrolled in the graphic design course as a beginner, and it was the perfect starting point. The instructor’s guidance and feedback improved my design abilities significantly. I’m grateful for this course!",
+      text: "Men boshlovchi sifatida grafik dizayn kursiga yozildim va bu mukammal boshlanish nuqtasi edi. O'qituvchining ko'rsatmalari va fikr-mulohazalari mening dizayn qobiliyatimni sezilarli darajada yaxshiladi. Men bu kurs uchun minnatdorman!",
       image: sarahImg,
     },
   ];
@@ -42,15 +42,16 @@ function TestimonialsPage() {
       <div className="testimonials-wrapper">
         <div className="testimonials-intro">
           <div className="testimonials-left">
-            <h2>All Testimonials</h2>
+            <h2>Hamma sharhlar</h2>
           </div>
           <div className="testimonials-right">
             <p>
-              Welcome to our online course page, where you can enhance your
-              skills in design and development. Choose from our carefully
-              curated selection of 10 courses designed to provide you with
-              comprehensive knowledge and practical experience. Explore the
-              courses below and find the perfect fit for your learning journey.
+              Onlayn kurs sahifamizga xush kelibsiz, u yerda siz o'z
+              mahoratingizni oshirishingiz mumkin dizayn va ishlab chiqish
+              ko'nikmalari. Bizdan ehtiyotkorlik bilan tanlang sizga taqdim
+              etish uchun mo'ljallangan 10 ta kurslarning tanlangan tanlovi keng
+              qamrovli bilim va amaliy tajriba. ni o'rganing Quyidagi kurslarni
+              o'qing va o'rganish sayohatingiz uchun eng mos variantni toping.
             </p>
           </div>
         </div>
@@ -63,7 +64,7 @@ function TestimonialsPage() {
                   <img src={t.image} alt={t.name} className="user-img" />
                   <strong>{t.name}</strong>
                 </div>
-                <button className="read-btn">Read Full Story</button>
+                <button className="read-btn">To'liq sharhni o'qing</button>
               </div>
             </div>
           ))}

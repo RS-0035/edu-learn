@@ -22,27 +22,27 @@ const Navbar = () => {
           <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
             <li>
               <NavLink to="/" className="nav-link" activeclassname="active">
-                Home
+                Bosh sahifa
               </NavLink>
             </li>
             <li>
               <NavLink to="/courses" className="nav-link">
-                Courses
+                Kurslar
               </NavLink>
             </li>
             <li>
               <NavLink to="/about" className="nav-link">
-                About Us
+                Biz haqimizda
               </NavLink>
             </li>
             <li>
               <NavLink to="/pricing" className="nav-link">
-                Pricing
+               Narxlar
               </NavLink>
             </li>
             <li>
               <NavLink to="/contact" className="nav-link">
-                Contact
+              Bog'lanish
               </NavLink>
             </li>
           </ul>
@@ -51,10 +51,10 @@ const Navbar = () => {
         {/* Auth Buttons */}
         <div className="auth-buttons">
           <Link to="/register" className="register-btn">
-            Register
+            Ro'yxatdan o'tish
           </Link>
           <Link to="/login" className="login-btn">
-            Login
+            Kirish
           </Link>
         </div>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>

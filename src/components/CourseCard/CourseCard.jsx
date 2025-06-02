@@ -66,7 +66,7 @@ function CourseCard({
             />
           ))
         ) : (
-          <p>No videos available</p>
+          <p>Hech qanday video mavjud emas</p>
         )}
       </div>
 
@@ -80,7 +80,7 @@ function CourseCard({
       {/* Curriculum Section */}
       {curriculum?.length > 0 && (
         <div className="curriculum-section">
-          <h3>Curriculum</h3>
+          <h3>O'quv dasturi</h3>
           <div className="curriculum-list">
             {curriculum.map((item, index) => (
               <div key={index} className="curriculum-item">

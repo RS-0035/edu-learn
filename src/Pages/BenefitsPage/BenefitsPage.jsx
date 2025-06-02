@@ -3,44 +3,44 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import "./BenefitsPage.css";
 
-import arrow from '../../assets/png/arrow.png'
+import arrow from "../../assets/png/arrow.png";
 
 const benefits = [
   {
     number: "01",
-    title: "Flexible Learning Schedule",
+    title: "Moslashuvchan o'quv jadvali",
     description:
-      "Fit your coursework around your existing commitments and obligations.",
+      "Kurs ishingizni mavjud majburiyatlaringiz va majburiyatlaringiz atrofida moslang.",
   },
   {
     number: "02",
-    title: "Expert Instruction",
+    title: "Mutaxassis yo'riqnomasi",
     description:
-      "Learn from industry experts who have hands-on experience in design and development.",
+      "Dizayn va ishlab chiqishda amaliy tajribaga ega bo'lgan soha mutaxassislaridan o'rganing.",
   },
   {
     number: "03",
-    title: "Diverse Course Offerings",
+    title: "Turli xil kurs takliflari",
     description:
-      "Explore a wide range of design and development courses covering various topics.",
+      "Turli mavzularni o'z ichiga olgan dizayn va ishlab chiqish kurslarining keng doirasini o'rganing.",
   },
   {
     number: "04",
-    title: "Updated Curriculum",
+    title: "Yangilangan oʻquv dasturi",
     description:
-      "Access courses with up-to-date content reflecting the latest trends and industry practices.",
+      "Eng so'nggi tendentsiyalar va sanoat amaliyotlarini aks ettiruvchi zamonaviy tarkibga ega kurslarga kiring.",
   },
   {
     number: "05",
-    title: "Practical Projects and Assignments",
+    title: "Amaliy loyihalar va topshiriqlar",
     description:
-      "Develop a portfolio showcasing your skills and abilities to potential employers.",
+      "Potentsial ish beruvchilarga o'z mahoratingiz va qobiliyatingizni namoyish etadigan portfelni ishlab chiqing.",
   },
   {
     number: "06",
-    title: "Interactive Learning Environment",
+    title: "Interfaol ta'lim muhiti",
     description:
-      "Collaborate with fellow learners, exchanging ideas and feedback to enhance your understanding.",
+      "Tushunishni kuchaytirish uchun hamkasblar bilan hamkorlik qiling, fikr va mulohaza almashing.",
   },
 ];
 
@@ -51,12 +51,13 @@ const BenefitsPage = () => {
 
       <div className="benefits-container-header">
         <div className="benefits-top-left">
-          <h2 className="benefits-heading">All Benefits</h2>
+          <h2 className="benefits-heading">Barcha imtiyozlar</h2>
         </div>
         <div className="benefits-top-right">
           <p className="benefits-subheading">
-            Discover all the advantages of learning with us, designed to make
-            your educational experience flexible, modern, and engaging.
+            Sizning ta'lim tajribangiz moslashuvchan, zamonaviy va qiziqarli
+            qilish uchun mo'ljallangan, biz bilan o'rganishning barcha
+            afzalliklarini kashf qiling
           </p>
         </div>
       </div>

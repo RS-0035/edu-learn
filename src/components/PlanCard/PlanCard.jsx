@@ -4,12 +4,12 @@ import "./PlanCard.css";
 const PlanCard = ({ title, price, features, onSelect }) => {
   return (
     <div className="plan-card">
-      <div className="plan-label">{title} Plan</div>
+      <div className="plan-label">{title} Reja</div>
       <div className="price-section">
         <span className="price">${price}</span>
-        <span className="per-month">/month</span>
+        <span className="per-month">/oy</span>
       </div>
-      <h4 className="features-title">Available Features</h4>
+      <h4 className="features-title">Mavjud xususiyatlar</h4>
       <ul className="features-list">
         {features.map((feature, index) => (
           <li
@@ -24,7 +24,7 @@ const PlanCard = ({ title, price, features, onSelect }) => {
         ))}
       </ul>
       <button className="get-started-btn" onClick={onSelect}>
-        Get Started
+      Boshlash
       </button>
     </div>
   );

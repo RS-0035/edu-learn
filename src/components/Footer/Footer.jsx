@@ -30,40 +30,40 @@ const Footer = () => {
 
         <div className="footer-col-wrapper">
           <div className="footer-col">
-            <h4>Home</h4>
+            <h4>Bosh sahifa</h4>
             <ul>
               <li>
-                <Link to="/#benefit-section">Benefits</Link>
+                <Link to="/#benefit-section">Foydalar</Link>
               </li>
               <li>
-                <Link to="/#our-courses">Our Courses</Link>
+                <Link to="/#our-courses">Bizning kurslar</Link>
               </li>
               <li>
-                <Link to="/#our-testimonials">Our Testimonials</Link>
+                <Link to="/#our-testimonials">Bizning sharhlarimiz</Link>
               </li>
               <li>
-                <Link to="/#faq">Our FAQ</Link>
+                <Link to="/#faq">Bizning tez-tez so'raladigan savollar</Link>
               </li>
             </ul>
           </div>
 
           <div className="footer-col">
-            <h4>About Us</h4>
+            <h4>Biz haqimizda</h4>
             <ul>
               <li>
-                <a href="/about#company">Company</a>
+                <a href="/about#company">Kompaniya</a>
               </li>
               <li>
-                <a href="/about#achievements">Achievements</a>
+                <a href="/about#achievements">Yutuqlar</a>
               </li>
               <li>
-                <a href="/about#goals">Our Goals</a>
+                <a href="/about#goals">Bizning maqsad</a>
               </li>
             </ul>
           </div>
 
           <div className="footer-col-social">
-            <h4>Social Profiles</h4>
+            <h4>Ijtimoiy profillar</h4>
             <div className="social-icons-footer">
               <a
                 href="https://www.facebook.com"

@@ -24,31 +24,31 @@ import PaymentModal from "../../components/PaymentModal/PaymentModal";
 
 const faqs = [
   {
-    question: "Can I enroll in multiple courses at once?",
+    question: "Bir vaqtning o'zida bir nechta kurslarga yozilsa bo'ladimi?",
     answer:
-      "Absolutely! You can enroll in multiple courses simultaneously and access them at your convenience.",
-    link: { text: "Enrollment Process for Different Courses", url: "#" },
+      "Albatta! Siz bir vaqtning o'zida bir nechta kurslarga ro'yxatdan o'tishingiz va ularga qulay vaqtda kirishingiz mumkin.",
+    link: { text: "Turli kurslarga ro'yxatdan o'tish jarayoni", url: "#" },
   },
   {
-    question: "What kind of support can I expect from instructors?",
+    question: "O'qituvchilardan qanday yordam kutishim mumkin?",
     answer:
-      "Instructors provide support via email, forums, and live Q&A sessions depending on the course.",
+      "O'qituvchilar kursga qarab elektron pochta, forumlar va jonli savol-javob sessiyalari orqali yordam beradi.",
   },
   {
     question:
-      "Are the courses self-paced or do they have specific start and end dates?",
+      "Kurslar o'z-o'zidan o'tadimi yoki ularning aniq boshlanish va tugash sanalari bormi?",
     answer:
-      "Most courses are self-paced, but some have scheduled cohorts with set start and end dates.",
+      "Ko'pgina kurslar o'z-o'zidan o'tadi, lekin ba'zilarida belgilangan boshlanish va tugash sanalari bilan rejalashtirilgan kogortalar mavjud.",
   },
   {
-    question: "Are there any prerequisites for the courses?",
+    question: "Kurslar uchun qandaydir shartlar bormi?",
     answer:
-      "Some advanced courses may have prerequisites, which are mentioned on the course page.",
+      "Ba'zi ilg'or kurslar kurs sahifasida aytib o'tilgan old shartlarga ega bo'lishi mumkin.",
   },
   {
-    question: "Can I download the course materials for offline access?",
+    question: "Oflayn kirish uchun kurs materiallarini yuklab olsam bo'ladimi?",
     answer:
-      "Yes, most courses allow you to download materials for offline use.",
+      "Ha, aksariyat kurslar oflayn foydalanish uchun materiallarni yuklab olish imkonini beradi.",
   },
 ];
 
@@ -71,39 +71,39 @@ function Home() {
   const benefitsData = [
     {
       id: "01",
-      title: "Flexible Learning Schedule",
+      title: "Moslashuvchan o'quv jadvali",
       description:
-        "Fit your coursework around your existing commitments and obligations.",
+        "Kurs ishingizni mavjud majburiyatlaringiz va majburiyatlaringiz atrofida moslang.",
     },
     {
       id: "02",
-      title: "Expert Instruction",
+      title: "Mutaxassis yo'riqnomasi",
       description:
-        "Learn from industry experts who have hands-on experience in design and development.",
+        "Dizayn va ishlab chiqishda amaliy tajribaga ega bo'lgan soha mutaxassislaridan o'rganing.",
     },
     {
       id: "03",
-      title: "Diverse Course Offerings",
+      title: "Turli xil kurs takliflari",
       description:
-        "Explore a wide range of design and development courses covering various topics.",
+        "Turli mavzularni o'z ichiga olgan dizayn va ishlab chiqish kurslarining keng doirasini o'rganing.",
     },
     {
       id: "04",
-      title: "Updated Curriculum",
+      title: "Yangilangan oʻquv dasturi",
       description:
-        "Access courses with up-to-date content reflecting the latest trends and industry practices.",
+        "Eng so'nggi tendentsiyalar va sanoat amaliyotlarini aks ettiruvchi zamonaviy tarkibga ega kurslarga kiring.",
     },
     {
       id: "05",
-      title: "Practical Projects and Assignments",
+      title: "Amaliy loyihalar va topshiriqlar",
       description:
-        "Develop a portfolio showcasing your skills and abilities to potential employers.",
+        "Potentsial ish beruvchilarga o'z mahoratingiz va qobiliyatingizni namoyish etadigan portfelni ishlab chiqing.",
     },
     {
       id: "06",
-      title: "Interactive Learning Environment",
+      title: "Interfaol ta'lim muhiti",
       description:
-        "Collaborate with fellow learners, exchanging ideas and feedback to enhance your understanding.",
+        "Tushunishni kuchaytirish uchun hamkasblar bilan hamkorlik qiling, fikr va mulohaza almashing.",
     },
   ];
 
@@ -154,25 +154,25 @@ function Home() {
     {
       id: 1,
       name: "Sarah L",
-      text: "The web design course provided a solid foundation for me. The instructors were knowledgeable and supportive, and the interactive learning environment was engaging. I highly recommend it!",
+      text: "Veb-dizayn kursi men uchun mustahkam poydevor yaratdi. O'qituvchilar bilimdon va qo'llab-quvvatladilar va interaktiv o'quv muhiti qiziqarli edi. Men buni juda tavsiya qilaman!",
       image: sarahImg,
     },
     {
       id: 2,
       name: "Jason M",
-      text: "The UI/UX design course exceeded my expectations. The instructor’s expertise and practical assignments helped me improve my design skills. I feel more confident in my career now. Thank you!",
+      text: "UI/UX dizayn kursi mening kutganimdan oshib ketdi. O'qituvchining tajribasi va amaliy topshiriqlari dizayn mahoratimni oshirishga yordam berdi. Endi o'zimni faoliyatimga ishonchim ko'proq his qilyapman. Rahmat!",
       image: sarahImg,
     },
     {
       id: 3,
       name: "Emily R",
-      text: "The mobile app development course was fantastic! The step-by-step tutorials and hands-on projects helped me grasp the concepts easily. I’m now building my own app. Great course!",
+      text: "Mobil ilovalarni ishlab chiqish kursi ajoyib bo'ldi! Bosqichma-bosqich qo'llanmalar va amaliy loyihalar menga tushunchalarni osongina tushunishimga yordam berdi. Endi men o'z ilovamni yaratyapman. Ajoyib kurs!",
       image: sarahImg,
     },
     {
       id: 4,
       name: "Michael K",
-      text: "I enrolled in the graphic design course as a beginner, and it was the perfect starting point. The instructor’s guidance and feedback improved my design abilities significantly. I’m grateful for this course!",
+      text: "Men boshlovchi sifatida grafik dizayn kursiga yozildim va bu mukammal boshlanish nuqtasi edi. O'qituvchining ko'rsatmalari va fikr-mulohazalari mening dizayn qobiliyatimni sezilarli darajada yaxshiladi. Men bu kurs uchun minnatdorman!",
       image: sarahImg,
     },
   ];
@@ -255,26 +255,28 @@ function Home() {
           <div className="highlight-box">
             <img src={lightning} alt="icon" className="hero-icon" />
             <span>
-              <strong className="highlight-text">Unlock</strong> Your Creative
-              Potential
+              Sizning ijodiy Potentsialingizni{" "}
+              <strong className="highlight-text">Kashf qiling</strong>
             </span>
           </div>
 
           <h2 className="hero-subtitle">
-            with{" "}
-            <span className="bold">Online Design and Development Courses</span>.
+            <span className="bold">
+              Onlayn dizayn va ishlab chiqish kurslari
+            </span>{" "}
+            bilan{" "}
           </h2>
 
           <p className="hero-description">
-            Learn from Industry Experts and Enhance Your Skills.
+            Sanoat mutaxassislaridan o'rganing va mahoratingizni oshiring.
           </p>
 
           <div className="hero-buttons">
             <Link to="/courses" className="btn-orange">
-              Explore Courses
+              Kurslarni o'rganing
             </Link>
             <Link to="/pricing" className="btn-outline">
-              View Pricing
+              Narxlarni ko'rish
             </Link>
           </div>
         </section>
@@ -286,15 +288,15 @@ function Home() {
       <section className="benefits-section" id="benefit-section">
         <div className="benefits-header overal-title">
           <div className="benefits-text-info">
-            <h2>Benefits</h2>
+            <h2>Imtiyozlar</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam
-              eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac
-              cum eget habitasse in velit fringilla feugiat senectus in.
+              Sizning ta'lim tajribangiz moslashuvchan, zamonaviy va qiziqarli
+              qilish uchun mo'ljallangan, biz bilan o'rganishning barcha
+              afzalliklarini kashf qiling.
             </p>
           </div>
           <Link to="/benefits" className="view-all-btn">
-            View All
+            Hammasini ko‘rish
           </Link>
         </div>
 
@@ -321,15 +323,15 @@ function Home() {
       <section className="home-courses-section" id="our-courses">
         <div className="home-courses-header overal-title">
           <div className="info-head">
-            <h2>Our Courses</h2>
+            <h2>Bizning Kurslarimiz</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam
-              eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac
-              cum eget habitasse in velit fringilla feugiat senectus in.
+              Onlayn kurs sahifamizga xush kelibsiz, u yerda siz o'z
+              mahoratingizni oshirishingiz mumkin. Quyidagi kurslarni o'qing va
+              o'rganish sayohatingiz uchun eng mos variantni toping.
             </p>
           </div>
           <Link to="/courses" className="view-all-btn">
-            View All
+            Hammasini ko‘rish
           </Link>
         </div>
 
@@ -362,7 +364,9 @@ function Home() {
                   </div>
                   <h3>{course.title}</h3>
                   <p>{course.description}</p>
-                  <Link to='/courses' className="get-now-btn">Get it Now</Link>
+                  <Link to="/courses" className="get-now-btn">
+                    Hoziroq oling
+                  </Link>
                 </div>
               </div>
             );
@@ -373,15 +377,16 @@ function Home() {
       <div className="home-testimonal" id="our-testimonials">
         <div className="home-testimonal-header overal-title">
           <div className="info-head">
-            <h2>Our Testimonials</h2>
+            <h2>Bizning sharhlarimiz</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam
-              eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac
-              cum eget habitasse in velit fringilla feugiat senectus in.
+              Mijoz kuzatilganidan juda xursand. Ishlab chiquvchilar uchun ham
+              vaqt keldi Ishlab chiquvchiga bu moliyalashtirish kerak va
+              Tomorrow eu sit dignissim lorem nibh et Ac qachon u velit
+              fringilla feugiat senectus yilda yashagan bo'lishi kerak
             </p>
           </div>
           <Link to="/testimonials" className="view-all-btn">
-            View All
+            Hammasini ko‘rish
           </Link>
         </div>
         <section className="home-testimonial-section">
@@ -399,7 +404,7 @@ function Home() {
                     <strong>{item.name}</strong>
                   </div>
                   <Link to={`/testimonials/${item.id}`} className="read-btn">
-                    Read Full Story
+                    To'liq sharhni o'qing
                   </Link>
                 </div>
               </div>
@@ -411,11 +416,11 @@ function Home() {
       <div className="home-pricing">
         <div className="home-pricing-header overal-title">
           <div className="info-head">
-            <h2>Our Pricing</h2>
+            <h2>Bizning Narximiz</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam
-              eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac
-              cum eget habitasse in velit fringilla feugiat senectus in.
+              EduLearnning Narxlar rejasi sahifasiga xush kelibsiz, biz ikkita
+              taklif qilamiz Ehtiyojlaringizni qondirish uchun keng qamrovli
+              variantlar: Bepul va Pro.
             </p>
           </div>
           <div className="pricing-options">
@@ -426,7 +431,7 @@ function Home() {
                 }`}
                 onClick={() => setBillingType("monthly")}
               >
-                Monthly
+                Oylik
               </button>
               <button
                 className={`toggle-option ${
@@ -434,7 +439,7 @@ function Home() {
                 }`}
                 onClick={() => setBillingType("yearly")}
               >
-                Yearly
+                Yillik
               </button>
             </div>
           </div>
@@ -460,12 +465,15 @@ function Home() {
         <div className="faq-section" id="faq">
           <div className="faq-wrapper">
             <div className="faq-left">
-              <h2>Frequently Asked Questions</h2>
+              <h2>Tez-tez so'raladigan savollar</h2>
               <p>
-                Still you have any questions? Contact our Team via <br />
+                Hali ham savollaringiz bormi? orqali jamoamiz bilan bog'laning
+                <br />
                 <strong>support@skillbridge.com</strong>
               </p>
-              <button className="all-faqs-btn">See All FAQ’s</button>
+              <button className="all-faqs-btn">
+                Barcha tez-tez so'raladigan savollarni ko'ring
+              </button>
             </div>
             <div className="faq-right">
               {faqs.map((faq, index) => (

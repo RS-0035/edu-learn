@@ -102,17 +102,19 @@ function Contact() {
 
       <section className="contact-intro">
         <div className="contact-left">
-          <h2>Contact Us</h2>
+          <h2>Biz bilan bog'lanish</h2>
         </div>
         <div className="contact-right">
           <p>
-            Welcome to SkillBridge’s Pricing Plan page, where we offer two
-            comprehensive options to cater to your needs: Free and Pro. We
-            believe in providing flexible and affordable pricing options for our
-            services. Whether you're an individual looking to enhance your
-            skills or a business seeking professional development solutions, we
-            have a plan that suits you. Explore our pricing options below and
-            choose the one that best fits your requirements.
+            EduLearnning Narxlar rejasi sahifasiga xush kelibsiz, biz ikkita
+            taklif qilamiz Ehtiyojlaringizni qondirish uchun keng qamrovli
+            variantlar: Bepul va Pro. Biz biz uchun moslashuvchan va arzon
+            narxlardagi variantlarni taqdim etishga ishonamiz xizmatlar. Siz
+            o'zingizni yaxshilashga intilayotgan shaxs bo'lasizmi ko'nikmalar
+            yoki kasbiy rivojlanish echimlarini izlayotgan biznes, biz sizga mos
+            keladigan rejaga ega bo'ling. Quyida bizning narxlash variantlarini
+            ko'rib chiqing va sizning talablaringizga eng mos keladiganini
+            tanlang.
           </p>
         </div>
       </section>
@@ -122,7 +124,7 @@ function Contact() {
           <form onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="form-group">
-                <label>First Name</label>
+                <label>Ism</label>
                 <input
                   ref={inputRefs.firstName}
                   value={form.firstName}
@@ -134,7 +136,7 @@ function Contact() {
                 />
               </div>
               <div className="form-group">
-                <label>Last Name</label>
+                <label>Familiya</label>
                 <input
                   ref={inputRefs.lastName}
                   value={form.lastName}
@@ -161,7 +163,7 @@ function Contact() {
                 />
               </div>
               <div className="form-group">
-                <label>Phone</label>
+                <label>Telefon</label>
                 <input
                   ref={inputRefs.phone}
                   value={form.phone}
@@ -175,7 +177,7 @@ function Contact() {
             </div>
 
             <div className="form-group">
-              <label>Subject</label>
+              <label>Fan</label>
               <input
                 ref={inputRefs.subject}
                 value={form.subject}
@@ -188,7 +190,7 @@ function Contact() {
             </div>
 
             <div className="form-group">
-              <label className="message-textarea">Message</label>
+              <label className="message-textarea">Xabar</label>
               <textarea
                 ref={inputRefs.message}
                 value={form.message}
@@ -200,7 +202,7 @@ function Contact() {
             </div>
 
             <button type="submit" className="send-button">
-              Send Your Message
+              Xabaringizni yuboring
             </button>
           </form>
         </div>
@@ -250,7 +252,7 @@ function Contact() {
               </a>
             </div>
 
-            <p>Social Profiles</p>
+            <p>Ijtimoiy profillar</p>
           </div>
         </div>
       </div>

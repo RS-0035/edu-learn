@@ -108,22 +108,26 @@ function Register() {
         {/* Left section (testimonial) */}
         <section className="testimonial-section">
           <div className="testimonial-header">
-            <h2>Students Testimonials</h2>
-            <p>Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in.</p>
+            <h2>Talabalar sharhlari</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam
+              eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac
+              cum eget habitasse in velit fringilla feugiat senectus in.
+            </p>
           </div>
 
           <div className="testimonial-box">
             <p className="testimonial-text">
-              The web design course provided a solid foundation for me. The
-              instructors were knowledgeable and supportive, and the interactive
-              learning environment was engaging. I highly recommend it!
+              Veb-dizayn kursi men uchun mustahkam poydevor yaratdi. The
+              o'qituvchilar bilimli va qo'llab-quvvatlovchi va interaktiv edi
+              o'quv muhiti qiziqarli edi. Men buni juda tavsiya qilaman!
             </p>
             <div className="testimonial-footer">
               <div className="testimonial-user">
                 <img src={sarahImg} alt="Sarah L" className="user-img" />
                 <strong>Sarah L</strong>
               </div>
-              <button className="read-btn">Read Full Story</button>
+              <button className="read-btn">To'liq hikoyani o'qing</button>
             </div>
           </div>
 
@@ -140,13 +144,13 @@ function Register() {
         {/* Right section (form) */}
         <div className="register-container">
           <div className="register-box">
-            <h2 className="register-title">Register</h2>
+            <h2 className="register-title">Roʻyxatdan oʻtish</h2>
             <p className="register-subtitle">
-              Create an account to unlock exclusive features.
+              Eksklyuziv xususiyatlarni ochish uchun hisob yarating.
             </p>
 
             <form onSubmit={handleRegister} className="register-form">
-              <label>Full Name</label>
+              <label>To'liq ism</label>
               <input
                 type="text"
                 name="fullName"
@@ -168,9 +172,11 @@ function Register() {
                 placeholder="Enter your Email"
                 className={errors.email ? "error-input" : ""}
               />
-              {errors.email && <span className="error-message">{errors.email}</span>}
+              {errors.email && (
+                <span className="error-message">{errors.email}</span>
+              )}
 
-              <label>Password</label>
+              <label>Parol</label>
               <div className="password-wrapper">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -200,18 +206,18 @@ function Register() {
                   onChange={handleChange}
                 />
                 <span>
-                  I agree with <a href="#">Terms of Use</a> and{" "}
-                  <a href="#">Privacy Policy</a>
+                  <a href="#">Foydalanish shartlari</a> va{" "}
+                  <a href="#">Maxfiylik siyosati</a>ga roziman
                 </span>
               </div>
 
               <button type="submit" className="register-button">
-                Register
+                Roʻyxatdan oʻtish
               </button>
 
               <div className="divider">
                 <hr />
-                <span>OR</span>
+                <span>Yoki</span>
                 <hr />
               </div>
 
@@ -221,11 +227,11 @@ function Register() {
                 className="google-button"
               >
                 <img src={google} alt="Google" />
-                Register with Google
+                Google bilan ro'yxatdan o'ting
               </button>
 
               <p className="login-link">
-                Already have an account? <Link to="/login">Login</Link>
+                Hisobingiz bormi?<Link to="/login">Kirish</Link>
               </p>
             </form>
           </div>

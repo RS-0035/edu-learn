@@ -44,15 +44,15 @@ function Courses() {
       <div className="courses-section">
         <div className="courses-intro">
           <div className="courses-left">
-            <h2>Online Courses on Design and Development</h2>
+            <h2>Dizayn va rivojlanish bo'yicha onlayn kurslar</h2>
           </div>
           <div className="courses-right">
             <p>
-              Welcome to our online course page, where you can enhance your
-              skills in design and development. Choose from our carefully
-              curated selection of 10 courses designed to provide you with
-              comprehensive knowledge and practical experience. Explore the
-              courses below and find the perfect fit for your learning journey.
+            Onlayn kurs sahifamizga xush kelibsiz, u yerda siz o'z mahoratingizni oshirishingiz mumkin
+              dizayn va ishlab chiqish ko'nikmalari. Bizdan ehtiyotkorlik bilan tanlang
+              sizga taqdim etish uchun mo'ljallangan 10 ta kurslarning tanlangan tanlovi
+              keng qamrovli bilim va amaliy tajriba ni o'rganing
+              Quyidagi kurslarni o'qing va o'rganish sayohatingiz uchun eng mos variantni toping.
             </p>
           </div>
         </div>
@@ -75,7 +75,7 @@ function Courses() {
               />
             ))
           ) : (
-            <p className="no-courses">No courses found.</p>
+            <p className="no-courses">Hech qanday kurs topilmadi.</p>
           )}
         </div>
       </div>

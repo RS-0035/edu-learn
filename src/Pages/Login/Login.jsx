@@ -105,7 +105,7 @@ function Login() {
         {/* Testimonial Section */}
         <section className="testimonial-section">
           <div className="testimonial-header">
-            <h2>Students Testimonials</h2>
+            <h2>Talabalar sharhlari</h2>
             <p>
             Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in.
             </p>
@@ -113,14 +113,14 @@ function Login() {
 
           <div className="testimonial-box">
             <p className="testimonial-text">
-              The web design course provided a solid foundation for me. The instructors were knowledgeable and supportive.
+            Veb-dizayn kursi men uchun mustahkam poydevor yaratdi. O'qituvchilar bilimdon va yordam berishdi.
             </p>
             <div className="testimonial-footer">
               <div className="testimonial-user">
                 <img src={sarahImg} alt="Sarah L" className="user-img" />
                 <strong>Sarah L</strong>
               </div>
-              <button className="read-btn">Read Full Story</button>
+              <button className="read-btn">To'liq hikoyani o'qing</button>
             </div>
           </div>
 
@@ -137,9 +137,9 @@ function Login() {
         {/* Login Section */}
         <div className="login-container">
           <div className="login-box">
-            <h2 className="login-title">Login</h2>
+            <h2 className="login-title">Kirish</h2>
             <p className="login-subtitle">
-              Welcome back! Please log in to access your account.
+            Qaytib kelganingizdan xursandmiz! Hisobingizga kirish uchun tizimga kiring.
             </p>
 
             <form onSubmit={handleLogin} className="login-form">
@@ -156,7 +156,7 @@ function Login() {
               {errors.email && <span className="error-message">{errors.email}</span>}
 
               {/* Password */}
-              <label>Password</label>
+              <label>Parol</label>
               <div className="password-wrapper">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -180,30 +180,30 @@ function Login() {
                   checked={formData.remember}
                   onChange={handleChange}
                 />
-                <span>Remember Me</span>
+                <span>Meni eslaysizmi</span>
               </div>
 
               {/* Login Button */}
               <button type="submit" className="login-button">
-                Login
+                Kirish
               </button>
 
               {/* Divider */}
               <div className="divider">
                 <hr />
-                <span>OR</span>
+                <span>Yoki</span>
                 <hr />
               </div>
 
               {/* Google Login Button */}
               <button type="button" className="google-button">
                 <img src={google} alt="Google" />
-                Login with Google
+                Google orqali kirish
               </button>
 
               {/* Register Link */}
               <p className="login-link">
-                Don't have an account? <Link to="/register">Register</Link>
+              Hisobingiz yo'qmi?<Link to="/register">Roʻyxatdan oʻtish</Link>
               </p>
             </form>
           </div>
