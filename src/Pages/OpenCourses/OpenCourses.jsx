@@ -59,7 +59,7 @@ function OpenCourses() {
   return (
     <>
       <Navbar />
-      <div className="open-courses-section">
+      <div className="open-courses-section container">
         <div className="open-courses-intro">
           <div className="open-courses-left">
             <h2>{course.title}</h2>

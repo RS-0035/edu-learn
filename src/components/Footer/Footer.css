@@ -7,8 +7,9 @@
   border-top: 1px solid #eee;
 }
 
-.footer-container {
+.footer-wrap {
   max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;

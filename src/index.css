@@ -15,5 +15,5 @@ body {
 /* Container Utility Class */
 .container {
   max-width: 1440px;
-  margin-inline: auto;
+  margin: 0 auto;
 }

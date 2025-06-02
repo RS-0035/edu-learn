@@ -101,111 +101,126 @@ function Login() {
   return (
     <>
       <Navbar />
-      <div className="login-wrapper">
-        {/* Testimonial Section */}
-        <section className="testimonial-section">
-          <div className="testimonial-header">
-            <h2>Talabalar sharhlari</h2>
-            <p>
-            Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in.
-            </p>
-          </div>
-
-          <div className="testimonial-box">
-            <p className="testimonial-text">
-            Veb-dizayn kursi men uchun mustahkam poydevor yaratdi. O'qituvchilar bilimdon va yordam berishdi.
-            </p>
-            <div className="testimonial-footer">
-              <div className="testimonial-user">
-                <img src={sarahImg} alt="Sarah L" className="user-img" />
-                <strong>Sarah L</strong>
-              </div>
-              <button className="read-btn">To'liq hikoyani o'qing</button>
-            </div>
-          </div>
-
-          <div className="testimonial-nav">
-            <button className="nav-btn">
-              <i className="fa-solid fa-arrow-left"></i>
-            </button>
-            <button className="nav-btn">
-              <i className="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-        </section>
-
-        {/* Login Section */}
-        <div className="login-container">
-          <div className="login-box">
-            <h2 className="login-title">Kirish</h2>
-            <p className="login-subtitle">
-            Qaytib kelganingizdan xursandmiz! Hisobingizga kirish uchun tizimga kiring.
-            </p>
-
-            <form onSubmit={handleLogin} className="login-form">
-              {/* Email */}
-              <label>Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter your Email"
-                className={errors.email ? "error-input" : ""}
-              />
-              {errors.email && <span className="error-message">{errors.email}</span>}
-
-              {/* Password */}
-              <label>Parol</label>
-              <div className="password-wrapper">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Enter your Password"
-                  className={errors.password ? "error-input" : ""}
-                />
-                <span className="eye-icon" onClick={togglePasswordVisibility}>
-                  <i className={`fa-solid ${showPassword ? "fa-eye" : "fa-eye-slash"}`}></i>
-                </span>
-              </div>
-              {errors.password && <span className="error-message">{errors.password}</span>}
-
-              {/* Remember Me */}
-              <div className="checkbox-container">
-                <input
-                  type="checkbox"
-                  name="remember"
-                  checked={formData.remember}
-                  onChange={handleChange}
-                />
-                <span>Meni eslaysizmi</span>
-              </div>
-
-              {/* Login Button */}
-              <button type="submit" className="login-button">
-                Kirish
-              </button>
-
-              {/* Divider */}
-              <div className="divider">
-                <hr />
-                <span>Yoki</span>
-                <hr />
-              </div>
-
-              {/* Google Login Button */}
-              <button type="button" className="google-button">
-                <img src={google} alt="Google" />
-                Google orqali kirish
-              </button>
-
-              {/* Register Link */}
-              <p className="login-link">
-              Hisobingiz yo'qmi?<Link to="/register">Roʻyxatdan oʻtish</Link>
+      <div className="login-wrap-section">
+        <div className="login-wrapper container">
+          {/* Testimonial Section */}
+          <section className="testimonial-section">
+            <div className="testimonial-header">
+              <h2>Talabalar sharhlari</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam
+                eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et.
+                Ac cum eget habitasse in velit fringilla feugiat senectus in.
               </p>
-            </form>
+            </div>
+
+            <div className="testimonial-box">
+              <p className="testimonial-text">
+                Veb-dizayn kursi men uchun mustahkam poydevor yaratdi.
+                O'qituvchilar bilimdon va yordam berishdi.
+              </p>
+              <div className="testimonial-footer">
+                <div className="testimonial-user">
+                  <img src={sarahImg} alt="Sarah L" className="user-img" />
+                  <strong>Sarah L</strong>
+                </div>
+                <button className="read-btn">To'liq hikoyani o'qing</button>
+              </div>
+            </div>
+
+            <div className="testimonial-nav">
+              <button className="nav-btn">
+                <i className="fa-solid fa-arrow-left"></i>
+              </button>
+              <button className="nav-btn">
+                <i className="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </section>
+
+          {/* Login Section */}
+          <div className="login-container">
+            <div className="login-box">
+              <h2 className="login-title">Kirish</h2>
+              <p className="login-subtitle">
+                Qaytib kelganingizdan xursandmiz! Hisobingizga kirish uchun
+                tizimga kiring.
+              </p>
+
+              <form onSubmit={handleLogin} className="login-form">
+                {/* Email */}
+                <label>Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your Email"
+                  className={errors.email ? "error-input" : ""}
+                />
+                {errors.email && (
+                  <span className="error-message">{errors.email}</span>
+                )}
+
+                {/* Password */}
+                <label>Parol</label>
+                <div className="password-wrapper">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="Enter your Password"
+                    className={errors.password ? "error-input" : ""}
+                  />
+                  <span className="eye-icon" onClick={togglePasswordVisibility}>
+                    <i
+                      className={`fa-solid ${
+                        showPassword ? "fa-eye" : "fa-eye-slash"
+                      }`}
+                    ></i>
+                  </span>
+                </div>
+                {errors.password && (
+                  <span className="error-message">{errors.password}</span>
+                )}
+
+                {/* Remember Me */}
+                <div className="checkbox-container">
+                  <input
+                    type="checkbox"
+                    name="remember"
+                    checked={formData.remember}
+                    onChange={handleChange}
+                  />
+                  <span>Meni eslaysizmi</span>
+                </div>
+
+                {/* Login Button */}
+                <button type="submit" className="login-button">
+                  Kirish
+                </button>
+
+                {/* Divider */}
+                <div className="divider">
+                  <hr />
+                  <span>Yoki</span>
+                  <hr />
+                </div>
+
+                {/* Google Login Button */}
+                <button type="button" className="google-button">
+                  <img src={google} alt="Google" />
+                  Google orqali kirish
+                </button>
+
+                {/* Register Link */}
+                <p className="login-link">
+                  Hisobingiz yo'qmi?
+                  <Link to="/register">Roʻyxatdan oʻtish</Link>
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </div>

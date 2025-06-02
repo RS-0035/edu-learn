@@ -76,7 +76,7 @@ function Pricing() {
     <div>
       <Navbar />
 
-      <section className="pricing-hero-section">
+      <section className="pricing-hero-section container">
         <div className="pricing-intro">
           <div className="pricing-left">
             <h2>Bizning Narxlarimiz</h2>

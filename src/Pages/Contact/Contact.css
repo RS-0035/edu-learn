@@ -52,7 +52,9 @@
   flex: 2;
   width: 100%;
 }
-
+.contact-form-wrap {
+  margin-bottom: 60px;
+}
 .contact-form form {
   display: flex;
   flex-direction: column;

@@ -285,7 +285,7 @@ function Home() {
         <YouTubePlayer videoUrl={randomVideo} />
       </div>
 
-      <section className="benefits-section" id="benefit-section">
+      <section className="benefits-section container" id="benefit-section">
         <div className="benefits-header overal-title">
           <div className="benefits-text-info">
             <h2>Imtiyozlar</h2>
@@ -320,7 +320,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="home-courses-section" id="our-courses">
+      <section className="home-courses-section container" id="our-courses">
         <div className="home-courses-header overal-title">
           <div className="info-head">
             <h2>Bizning Kurslarimiz</h2>
@@ -374,7 +374,7 @@ function Home() {
         </div>
       </section>
 
-      <div className="home-testimonal" id="our-testimonials">
+      <div className="home-testimonal container" id="our-testimonials">
         <div className="home-testimonal-header overal-title">
           <div className="info-head">
             <h2>Bizning sharhlarimiz</h2>
@@ -413,7 +413,7 @@ function Home() {
         </section>
       </div>
 
-      <div className="home-pricing">
+      <div className="home-pricing container">
         <div className="home-pricing-header overal-title">
           <div className="info-head">
             <h2>Bizning Narximiz</h2>

@@ -6,12 +6,12 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <>
+    <div className="navbar-wrapper">
       {/* Overlay */}
       {menuOpen && (
         <div className="overlay" onClick={() => setMenuOpen(false)}></div>
       )}
-      <nav className="navbar">
+      <nav className="navbar container">
         {/* Logo */}
         <div className="navbar-left">
           <Link to="/" className="logo-link">
@@ -61,7 +61,7 @@ const Navbar = () => {
           ☰
         </button>
       </nav>
-    </>
+    </div>
   );
 };
 

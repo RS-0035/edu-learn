@@ -53,7 +53,7 @@ function TestimonialDetail() {
   return (
     <>
     <Navbar/>
-      <div className="testimonial-detail-wrapper">
+      <div className="testimonial-detail-wrapper container">
       <div className="testimonial-detail-card">
         <img
           src={testimonial.image}

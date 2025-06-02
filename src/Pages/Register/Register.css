@@ -1,3 +1,7 @@
+.register-wrap-section {
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
 .register-wrapper {
   display: flex;
   justify-content: space-between;
@@ -5,6 +9,7 @@
   margin-top: 80px;
   margin-bottom: 50px;
   padding: 0px 80px;
+  width: 100%;
 }
 .testimonial-section {
   background-color: #f9f9f9;

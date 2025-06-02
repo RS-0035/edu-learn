@@ -39,7 +39,7 @@ function TestimonialsPage() {
   return (
     <>
       <Navbar />
-      <div className="testimonials-wrapper">
+      <div className="testimonials-wrapper container">
         <div className="testimonials-intro">
           <div className="testimonials-left">
             <h2>Hamma sharhlar</h2>

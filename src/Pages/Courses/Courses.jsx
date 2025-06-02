@@ -41,7 +41,7 @@ function Courses() {
   return (
     <>
       <Navbar />
-      <div className="courses-section">
+      <div className="courses-section container">
         <div className="courses-intro">
           <div className="courses-left">
             <h2>Dizayn va rivojlanish bo'yicha onlayn kurslar</h2>

@@ -68,7 +68,7 @@ function AboutUs() {
   return (
     <>
       <Navbar />
-      <div className="about-us-section" id="company">
+      <div className="about-us-section container" id="company">
         <div className="about-us-intro">
           <div className="about-us-left">
             <h2>Malaka haqida</h2>
@@ -84,7 +84,7 @@ function AboutUs() {
           </div>
         </div>
       </div>
-      <div className="ag-section-wrapper">
+      <div className="ag-section-wrapper container">
         <section className="ag-achievements-section" id="achievements">
           <h2 className="ag-section-title">Yutuqlar</h2>
           <p className="ag-section-subtitle">
