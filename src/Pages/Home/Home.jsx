@@ -17,10 +17,14 @@ import YouTubePlayer from "../../components/YouTubePlayer/YouTubePlayer";
 
 // images
 import sarahImg from "../../assets/png/sarah.png";
+import jasonImg from "../../assets/png/jasonImg.png";
+import emilyImg from "../../assets/png/emilyImg.png";
+import michaelImg from "../../assets/png/michaelImg.png";
 import first from "../../assets/png/first.png";
 import arrow from "../../assets/png/arrow.png";
 import lightning from "../../assets/png/lighting.png";
 import PaymentModal from "../../components/PaymentModal/PaymentModal";
+import Skeleton from "../../components/Skeleton/Skeleton";
 
 const faqs = [
   {
@@ -59,6 +63,7 @@ function Home() {
   const [randomVideo, setRandomVideo] = useState("");
   const [coursesData, setCoursesData] = useState([]);
   const [selectedPlan, setSelectedPlan] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const videoUrls = [
     "https://youtu.be/bCctDua1pxs?si=Ulsnf3UQQzmWyUao",
@@ -161,19 +166,19 @@ function Home() {
       id: 2,
       name: "Jason M",
       text: "UI/UX dizayn kursi mening kutganimdan oshib ketdi. O'qituvchining tajribasi va amaliy topshiriqlari dizayn mahoratimni oshirishga yordam berdi. Endi o'zimni faoliyatimga ishonchim ko'proq his qilyapman. Rahmat!",
-      image: sarahImg,
+      image: jasonImg,
     },
     {
       id: 3,
       name: "Emily R",
       text: "Mobil ilovalarni ishlab chiqish kursi ajoyib bo'ldi! Bosqichma-bosqich qo'llanmalar va amaliy loyihalar menga tushunchalarni osongina tushunishimga yordam berdi. Endi men o'z ilovamni yaratyapman. Ajoyib kurs!",
-      image: sarahImg,
+      image: emilyImg,
     },
     {
       id: 4,
       name: "Michael K",
       text: "Men boshlovchi sifatida grafik dizayn kursiga yozildim va bu mukammal boshlanish nuqtasi edi. O'qituvchining ko'rsatmalari va fikr-mulohazalari mening dizayn qobiliyatimni sezilarli darajada yaxshiladi. Men bu kurs uchun minnatdorman!",
-      image: sarahImg,
+      image: michaelImg,
     },
   ];
 
@@ -223,6 +228,7 @@ function Home() {
           ...doc.data(),
         }));
         setCoursesData(fetchedCourses);
+        setLoading(false);
       } catch (error) {
         console.error("Xatolik:", error);
       }
@@ -336,41 +342,49 @@ function Home() {
         </div>
 
         <div className="home-courses-grid">
-          {coursesData.map((course) => {
-            const videoUrls = course.videoURL || [];
-            const getYouTubeThumbnail = (url) => {
-              try {
-                const videoId = new URL(url).pathname.split("/").pop();
-                return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-              } catch {
-                return "";
-              }
-            };
+          {loading ? (
+            <>
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+            </>
+          ) : (
+            coursesData.slice(0, 2).map((course) => {
+              const videoUrls = course.videoURL || [];
+              const getYouTubeThumbnail = (url) => {
+                try {
+                  const videoId = new URL(url).pathname.split("/").pop();
+                  return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                } catch {
+                  return "";
+                }
+              };
 
-            return (
-              <div className="home-course-card" key={course.id}>
-                {videoUrls.length > 0 && (
-                  <img
-                    src={getYouTubeThumbnail(videoUrls[0])}
-                    alt="Course Preview"
-                    className="home-course-thumbnail"
-                  />
-                )}
-                <div className="home-course-info">
-                  <div className="home-course-meta">
-                    <span>{course.duration}</span>
-                    <span>{course.level}</span>
-                    <span>By {course.instructor}</span>
+              return (
+                <div className="home-course-card" key={course.id}>
+                  {videoUrls.length > 0 && (
+                    <img
+                      src={getYouTubeThumbnail(videoUrls[0])}
+                      alt="Course Preview"
+                      className="home-course-thumbnail"
+                    />
+                  )}
+                  <div className="home-course-info">
+                    <div className="home-course-meta">
+                      <span>{course.duration}</span>
+                      <span>{course.level}</span>
+                      <span>By {course.instructor}</span>
+                    </div>
+                    <h3>{course.title}</h3>
+                    <p>{course.description}</p>
+                    <Link to="/courses" className="get-now-btn">
+                      Hoziroq oling
+                    </Link>
                   </div>
-                  <h3>{course.title}</h3>
-                  <p>{course.description}</p>
-                  <Link to="/courses" className="get-now-btn">
-                    Hoziroq oling
-                  </Link>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
         </div>
       </section>
 
@@ -445,15 +459,23 @@ function Home() {
           </div>
         </div>
         <div className="pricing-container">
-          {plans.map((plan, index) => (
-            <PlanCard
-              key={index}
-              title={plan.title}
-              price={plan.price}
-              features={plan.features}
-              onSelect={() => setSelectedPlan(plan)}
-            />
-          ))}
+          {loading ? (
+            <>
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+            </>
+          ) : (
+            plans.map((plan, index) => (
+              <PlanCard
+                key={index}
+                title={plan.title}
+                price={plan.price}
+                features={plan.features}
+                onSelect={() => setSelectedPlan(plan)}
+              />
+            ))
+          )}
         </div>
         {selectedPlan && (
           <PaymentModal

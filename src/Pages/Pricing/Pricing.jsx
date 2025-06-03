@@ -17,31 +17,31 @@ import Skeleton from "../../components/Skeleton/Skeleton";
 
 const faqs = [
   {
-    question: "Can I enroll in multiple courses at once?",
+    question: "Bir vaqtning o'zida bir nechta kurslarga yozilsa bo'ladimi?",
     answer:
-      "Absolutely! You can enroll in multiple courses simultaneously and access them at your convenience.",
-    link: { text: "Enrollment Process for Different Courses", url: "#" },
+      "Albatta! Siz bir vaqtning o'zida bir nechta kurslarga ro'yxatdan o'tishingiz va ularga qulay vaqtda kirishingiz mumkin.",
+    link: { text: "Turli kurslarga ro'yxatdan o'tish jarayoni", url: "#" },
   },
   {
-    question: "What kind of support can I expect from instructors?",
+    question: "O'qituvchilardan qanday yordam kutishim mumkin?",
     answer:
-      "Instructors provide support via email, forums, and live Q&A sessions depending on the course.",
+      "O'qituvchilar kursga qarab elektron pochta, forumlar va jonli savol-javob sessiyalari orqali yordam beradi.",
   },
   {
     question:
-      "Are the courses self-paced or do they have specific start and end dates?",
+      "Kurslar o'z-o'zidan o'tadimi yoki ularning aniq boshlanish va tugash sanalari bormi?",
     answer:
-      "Most courses are self-paced, but some have scheduled cohorts with set start and end dates.",
+      "Ko'pgina kurslar o'z-o'zidan o'tadi, lekin ba'zilarida belgilangan boshlanish va tugash sanalari bilan rejalashtirilgan kogortalar mavjud.",
   },
   {
-    question: "Are there any prerequisites for the courses?",
+    question: "Kurslar uchun qandaydir shartlar bormi?",
     answer:
-      "Some advanced courses may have prerequisites, which are mentioned on the course page.",
+      "Ba'zi ilg'or kurslar kurs sahifasida aytib o'tilgan old shartlarga ega bo'lishi mumkin.",
   },
   {
-    question: "Can I download the course materials for offline access?",
+    question: "Oflayn kirish uchun kurs materiallarini yuklab olsam bo'ladimi?",
     answer:
-      "Yes, most courses allow you to download materials for offline use.",
+      "Ha, aksariyat kurslar oflayn foydalanish uchun materiallarni yuklab olish imkonini beradi.",
   },
 ];
 

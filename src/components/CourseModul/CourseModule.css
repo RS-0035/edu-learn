@@ -1,11 +1,14 @@
 .course-module {
   background-color: #fff;
   border-radius: 12px;
-  padding: 0 30px;
+  padding: 10px 30px;
   width: 100%;
   position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+
 }
 
 /* Module number in corner */
@@ -33,6 +36,8 @@
   padding: 0;
   margin: 0;
   list-style: none;
+  margin-bottom: 15px;
+
 }
 
 /* Each lesson */

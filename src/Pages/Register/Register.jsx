@@ -22,9 +22,44 @@ function Register() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
+  const testimonials = [
+    {
+      text: "Veb-dizayn kursi men uchun mustahkam poydevor yaratdi. O'qituvchilar bilimli va qo'llab-quvvatlovchi, o'quv muhiti esa qiziqarli edi. Men buni juda tavsiya qilaman!",
+      user: "Sarah L",
+      img: sarahImg,
+    },
+    {
+      text: "Kurs davomida ko‘p amaliy loyihalarda qatnashdim va bu menga portfoliomi boyitishda yordam berdi.",
+      user: "John D",
+      img: sarahImg,
+    },
+    {
+      text: "Ustozlarimiz o‘z ishining ustasi! Har bir darsdan zavq oldim.",
+      user: "Laylo M",
+      img: sarahImg,
+    },
+  ];
+
+  const [current, setCurrent] = useState(0);
+
+  const nextTestimonial = () => {
+    setCurrent((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrent(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
+  };
+
+  const testimonial = testimonials[current];
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
   };
 
   const validate = () => {
@@ -111,34 +146,33 @@ function Register() {
             <div className="testimonial-header">
               <h2>Talabalar sharhlari</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam
-                eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et.
-                Ac cum eget habitasse in velit fringilla feugiat senectus in.
+                Amaliy yondashuv, tajribali o‘qituvchilar va zamonaviy darslar —
+                aynan shu jihatlar bizning o‘quvchilarimizni o‘z sohasida
+                muvaffaqiyatga yetaklamoqda.
               </p>
             </div>
-
             <div className="testimonial-box">
-              <p className="testimonial-text">
-                Veb-dizayn kursi men uchun mustahkam poydevor yaratdi. The
-                o'qituvchilar bilimli va qo'llab-quvvatlovchi va interaktiv edi
-                o'quv muhiti qiziqarli edi. Men buni juda tavsiya qilaman!
-              </p>
+              <p className="testimonial-text">{testimonial.text}</p>
               <div className="testimonial-footer">
                 <div className="testimonial-user">
-                  <img src={sarahImg} alt="Sarah L" className="user-img" />
-                  <strong>Sarah L</strong>
+                  <img
+                    src={testimonial.img}
+                    alt={testimonial.user}
+                    className="user-img"
+                  />
+                  <strong>{testimonial.user}</strong>
                 </div>
-                <button className="read-btn">To'liq hikoyani o'qing</button>
+                <button className="read-btn">To'liq sharhni o'qing</button>
               </div>
-            </div>
 
-            <div className="testimonial-nav">
-              <button className="nav-btn">
-                <i className="fa-solid fa-arrow-left"></i>
-              </button>
-              <button className="nav-btn">
-                <i className="fa-solid fa-arrow-right"></i>
-              </button>
+              <div className="testimonial-nav">
+                <button className="nav-btn" onClick={prevTestimonial}>
+                  <i className="fa-solid fa-arrow-left"></i>
+                </button>
+                <button className="nav-btn" onClick={nextTestimonial}>
+                  <i className="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
             </div>
           </section>
 
@@ -157,7 +191,7 @@ function Register() {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  placeholder="Enter your Name"
+                  placeholder="Ismingizni kiriting..."
                   className={errors.fullName ? "error-input" : ""}
                 />
                 {errors.fullName && (
@@ -170,7 +204,7 @@ function Register() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Enter your Email"
+                  placeholder="Emailingizni kiriting..."
                   className={errors.email ? "error-input" : ""}
                 />
                 {errors.email && (
@@ -184,7 +218,7 @@ function Register() {
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
-                    placeholder="Enter your Password"
+                    placeholder="Parol kiriting..."
                     className={errors.password ? "error-input" : ""}
                   />
                   <span className="eye-icon" onClick={togglePasswordVisibility}>

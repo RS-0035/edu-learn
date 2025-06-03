@@ -50,7 +50,7 @@ function CourseCard({
           <p>{description}</p>
         </div>
         <button className="view-btn" onClick={handleViewCourse}>
-          View Course
+          Kursni ko'rish
         </button>
       </div>
 

@@ -315,6 +315,11 @@
   align-items: last baseline;
   margin-bottom: 30px;
 }
+.testimonial-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 .home-testimonal-header h2 {
   font-size: 28px;
@@ -351,6 +356,9 @@
   align-items: last baseline;
   margin-bottom: 30px;
 }
+.home-pricing .pricing-container{
+  padding: 40px 20px;
+}
 
 @media (max-width: 750px) {
   .overal-title {
@@ -380,6 +388,10 @@
 }
 
 @media (max-width: 620px) {
+  .highlight-box {
+    font-size: 16px;
+  }
+
   .home-course-card {
     max-width: 400px;
   }
@@ -388,7 +400,7 @@
     margin-bottom: 25px;
   }
   .hero-subtitle {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
   }
   .testimonial-box {
@@ -406,13 +418,23 @@
     padding: 10px 14px;
     border-radius: 8px;
   }
+  .hero-buttons {
+    font-size: 14px;
+  }
 }
 @media (max-width: 480px) {
+  .benefits-section {
+    padding: 10px 20px;
+  }
+  .highlight-box {
+    padding: 10px;
+    margin: 10px;
+  }
   .benefits-grid {
     display: flex;
     flex-direction: column;
     gap: 1.5rem; /* elementlar orasida masofa */
-    padding: 1rem;
+    /* padding: 1rem; */
   }
 
   .benefit-card {
@@ -464,13 +486,11 @@
     font-size: 1rem;
     width: 100%;
   }
-/* 
+  /* 
   .view-all-btn {
     align-self: stretch;
     padding: 0.75rem 1rem;
   } */
-
-
 
   .home-courses-grid {
     display: flex;
@@ -528,6 +548,9 @@
   .home-testimonial-section {
     margin-top: 2rem;
   }
+  .home-testimonal {
+    padding: 10px 20px;
+  }
 
   .home-testimonials-grid {
     display: flex;
@@ -562,5 +585,10 @@
   .read-btn {
     padding: 10px 10px;
     font-size: 10px;
+    text-align: center;
   }
+  .home-pricing {
+    padding: 10px 20px;
+  }
+
 }

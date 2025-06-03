@@ -13,9 +13,11 @@ import CourseCard from "../../components/CourseCard/CourseCard";
 
 // image
 import first from "../../assets/png/first.png";
+import Skeleton from "../../components/Skeleton/Skeleton";
 
 function Courses() {
   const [courses, setCourses] = useState([]);
+  const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -28,6 +30,7 @@ function Courses() {
         console.log(courseList);
 
         setCourses(courseList);
+        setIsLoading(false);
       } catch (error) {
         console.error("Xatolik:", error);
       }
@@ -48,19 +51,28 @@ function Courses() {
           </div>
           <div className="courses-right">
             <p>
-            Onlayn kurs sahifamizga xush kelibsiz, u yerda siz o'z mahoratingizni oshirishingiz mumkin
-              dizayn va ishlab chiqish ko'nikmalari. Bizdan ehtiyotkorlik bilan tanlang
-              sizga taqdim etish uchun mo'ljallangan 10 ta kurslarning tanlangan tanlovi
-              keng qamrovli bilim va amaliy tajriba ni o'rganing
-              Quyidagi kurslarni o'qing va o'rganish sayohatingiz uchun eng mos variantni toping.
+              Onlayn kurs sahifamizga xush kelibsiz, u yerda siz o'z
+              mahoratingizni oshirishingiz mumkin dizayn va ishlab chiqish
+              ko'nikmalari. Bizdan ehtiyotkorlik bilan tanlang sizga taqdim
+              etish uchun mo'ljallangan 10 ta kurslarning tanlangan tanlovi keng
+              qamrovli bilim va amaliy tajriba ni o'rganing Quyidagi kurslarni
+              o'qing va o'rganish sayohatingiz uchun eng mos variantni toping.
             </p>
           </div>
         </div>
 
         <div className="course-groups">
-          {console.log(courses[0]?.imageUrls)}
-          {courses.length > 0 ? (
-            courses?.map((course, index) => (
+          {loading ? (
+            <>
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              
+            </>
+          ) : courses.length > 0 ? (
+            courses.map((course, index) => (
               <CourseCard
                 id={course.id}
                 key={course.id || index}

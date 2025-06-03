@@ -49,16 +49,18 @@ const BenefitsPage = () => {
     <>
       <Navbar />
 
-      <div className="benefits-container-header">
-        <div className="benefits-top-left">
-          <h2 className="benefits-heading">Barcha imtiyozlar</h2>
-        </div>
-        <div className="benefits-top-right">
-          <p className="benefits-subheading">
-            Sizning ta'lim tajribangiz moslashuvchan, zamonaviy va qiziqarli
-            qilish uchun mo'ljallangan, biz bilan o'rganishning barcha
-            afzalliklarini kashf qiling
-          </p>
+      <div className="benefits-head-top container">
+        <div className="benefits-container-header">
+          <div className="benefits-top-left">
+            <h2 className="benefits-heading">Barcha imtiyozlar</h2>
+          </div>
+          <div className="benefits-top-right">
+            <p className="benefits-subheading">
+              Sizning ta'lim tajribangiz moslashuvchan, zamonaviy va qiziqarli
+              qilish uchun mo'ljallangan, biz bilan o'rganishning barcha
+              afzalliklarini kashf qiling
+            </p>
+          </div>
         </div>
       </div>
 

@@ -107,15 +107,12 @@ function Contact() {
           </div>
           <div className="contact-right">
             <p>
-              EduLearnning Narxlar rejasi sahifasiga xush kelibsiz, biz ikkita
-              taklif qilamiz Ehtiyojlaringizni qondirish uchun keng qamrovli
-              variantlar: Bepul va Pro. Biz biz uchun moslashuvchan va arzon
-              narxlardagi variantlarni taqdim etishga ishonamiz xizmatlar. Siz
-              o'zingizni yaxshilashga intilayotgan shaxs bo'lasizmi ko'nikmalar
-              yoki kasbiy rivojlanish echimlarini izlayotgan biznes, biz sizga
-              mos keladigan rejaga ega bo'ling. Quyida bizning narxlash
-              variantlarini ko'rib chiqing va sizning talablaringizga eng mos
-              keladiganini tanlang.
+              Agar sizda savollar bo‘lsa, yordamga muhtoj bo‘lsangiz yoki
+              shunchaki biz bilan aloqaga chiqmoqchi bo‘lsangiz, biz bilan
+              bog‘laning. Biz sizning fikringizni qadrlaymiz va imkon qadar
+              tezroq javob beramiz. Quyidagi shakl orqali murojaat yuborishingiz
+              yoki bizning ijtimoiy tarmoqlardagi sahifalarimiz orqali
+              bog‘lanishingiz mumkin.
             </p>
           </div>
         </div>
@@ -134,7 +131,7 @@ function Contact() {
                     onChange={handleChange}
                     name="firstName"
                     type="text"
-                    placeholder="Enter First Name"
+                    placeholder="Ismni kiriting..."
                     className={errors.firstName ? "error-input" : ""}
                   />
                 </div>
@@ -146,7 +143,7 @@ function Contact() {
                     onChange={handleChange}
                     name="lastName"
                     type="text"
-                    placeholder="Enter Last Name"
+                    placeholder="Familiyani kiriting..."
                     className={errors.lastName ? "error-input" : ""}
                   />
                 </div>
@@ -161,7 +158,7 @@ function Contact() {
                     onChange={handleChange}
                     name="email"
                     type="email"
-                    placeholder="Enter your Email"
+                    placeholder="Emailni kiriting..."
                     className={errors.email ? "error-input" : ""}
                   />
                 </div>
@@ -173,7 +170,7 @@ function Contact() {
                     onChange={handleChange}
                     name="phone"
                     type="tel"
-                    placeholder="Enter Phone Number"
+                    placeholder="Raqam kiriting..."
                     className={errors.phone ? "error-input" : ""}
                   />
                 </div>
@@ -187,7 +184,7 @@ function Contact() {
                   onChange={handleChange}
                   name="subject"
                   type="text"
-                  placeholder="Enter your Subject"
+                  placeholder="Fanni kiriting..."
                   className={errors.subject ? "error-input" : ""}
                 />
               </div>
@@ -199,7 +196,7 @@ function Contact() {
                   value={form.message}
                   onChange={handleChange}
                   name="message"
-                  placeholder="Enter your Message here..."
+                  placeholder="Xabarni kiriting..."
                   className={errors.message ? "error-input" : ""}
                 ></textarea>
               </div>

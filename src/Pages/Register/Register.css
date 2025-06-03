@@ -21,7 +21,13 @@
 .testimonial-header {
   width: 100%;
 }
-
+.testimonial-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* min-height: 300px; */
+  height: 100%;
+}
 .error {
   color: red;
   font-size: 14px;

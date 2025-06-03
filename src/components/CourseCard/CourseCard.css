@@ -127,6 +127,12 @@
 }
 
 /* ==== Responsive Design ==== */
+@media (max-width:770px) {
+  .course-card {
+    margin: 20px 40px;
+  }
+}
+
 @media (max-width: 600px) {
   .course-card {
     margin: 20px 40px;

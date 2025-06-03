@@ -8,6 +8,9 @@ import Footer from "../../components/Footer/Footer";
 
 // img
 import sarahImg from "../../assets/png/sarah.png";
+import michaelImg from "../../assets/png/michaelImg.png";
+import emilyImg from "../../assets/png/emilyImg.png";
+import jasonImg from "../../assets/png/jasonImg.png";
 
 function TestimonialsPage() {
   const testimonials = [
@@ -21,19 +24,19 @@ function TestimonialsPage() {
       id: 2,
       name: "Jason M",
       text: "UI/UX dizayn kursi mening kutganimdan oshib ketdi. O'qituvchining tajribasi va amaliy topshiriqlari dizayn mahoratimni oshirishga yordam berdi. Endi o'zimni faoliyatimga ishonchim ko'proq his qilyapman. rahmat!",
-      image: sarahImg,
+      image: jasonImg,
     },
     {
       id: 3,
       name: "Emily R",
       text: "Mobil ilovalarni ishlab chiqish kursi ajoyib bo'ldi! Bosqichma-bosqich qo'llanmalar va amaliy loyihalar menga tushunchalarni osongina tushunishimga yordam berdi. Endi men o'z ilovamni yaratyapman. Ajoyib kurs!",
-      image: sarahImg,
+      image: emilyImg,
     },
     {
       id: 4,
       name: "Michael K",
       text: "Men boshlovchi sifatida grafik dizayn kursiga yozildim va bu mukammal boshlanish nuqtasi edi. O'qituvchining ko'rsatmalari va fikr-mulohazalari mening dizayn qobiliyatimni sezilarli darajada yaxshiladi. Men bu kurs uchun minnatdorman!",
-      image: sarahImg,
+      image: michaelImg,
     },
   ];
   return (

@@ -18,7 +18,7 @@
 }
 
 .navbar-left {
-  width: 50%;
+  width: 60%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,6 +55,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  font-size: 14px;
 }
 
 .register-btn {
@@ -117,16 +118,23 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 14px;
+    font-size: 12px;
   }
   .navbar-left {
     width: 60%;
+  }
+  
+}
+
+@media (max-width:1010px) {
+  .navbar-left {
+    width: 90%;
   }
 }
 
 @media (max-width: 888px) {
   .navbar-left {
-    width: 75%;
+    width: 80%;
   }
   .nav-links {
     display: flex;
