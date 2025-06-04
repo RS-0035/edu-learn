@@ -27,7 +27,6 @@ function Courses() {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log(courseList);
 
         setCourses(courseList);
         setIsLoading(false);
@@ -39,7 +38,6 @@ function Courses() {
     fetchCourses();
   }, []);
 
-  console.log(courses);
 
   return (
     <>

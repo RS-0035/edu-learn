@@ -15,6 +15,7 @@ import sarahImg from "../../assets/png/sarah.png";
 import google from "../../assets/png/google.png";
 
 import "./Login.css";
+import Loader from "../../utils/Loader";
 
 function Login() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ function Login() {
   });
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const [loader, setLoader] = useState(false);
   const testimonials = [
     {
       text: "Veb-dizayn kursi men uchun mustahkam poydevor yaratdi. O'qituvchilar bilimli va qo'llab-quvvatlovchi, o'quv muhiti esa qiziqarli edi. Men buni juda tavsiya qilaman!",
@@ -98,7 +100,7 @@ function Login() {
     }
 
     const { email, password, remember } = formData;
-
+    setLoader(true);
     try {
       await setPersistence(
         auth,
@@ -111,22 +113,31 @@ function Login() {
         password
       );
 
-      console.log("Login successful:", userCredential.user);
       alert("Tizimga muvaffaqiyatli kirildi!");
-      navigate("/account");
+
+      if (userCredential) {
+        localStorage.setItem("username", formData.email);
+      }
+
+      navigate("/");
+      window.location.reload();
     } catch (error) {
-      console.error("Login error:", error.code, error.message);
       if (error.code === "auth/invalid-credential") {
         alert("Email yoki parol noto'g'ri.");
       } else {
         alert("Xatolik yuz berdi: " + error.message);
       }
+      setLoader(false);
+    } finally {
+      setLoader(false);
     }
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
+
+  // console.log(formData)
 
   return (
     <>
@@ -229,7 +240,7 @@ function Login() {
 
                 {/* Login Button */}
                 <button type="submit" className="login-button">
-                  Kirish
+                  {loader ? <Loader /> : "Tizimga kirish"}
                 </button>
 
                 {/* Divider */}

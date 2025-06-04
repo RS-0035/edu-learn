@@ -7,13 +7,16 @@ import Footer from "../../components/Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
 
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from "../../firebase";
+import { auth, db, googleProvider } from "../../firebase";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+
+import Loader from "../../utils/Loader";
 
 function Register() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    fullName: "",
+    displayName: "",
     email: "",
     password: "",
     agree: false,
@@ -21,6 +24,7 @@ function Register() {
 
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const testimonials = [
     {
@@ -65,8 +69,8 @@ function Register() {
   const validate = () => {
     const newErrors = {};
 
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = "Full Name is required.";
+    if (!formData.displayName.trim()) {
+      newErrors.displayName = "Full Name is required.";
     }
 
     if (!formData.email) {
@@ -95,9 +99,10 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (!validate()) return; // ❗ Validationdan o'tmasa register qilmaydi
+    if (!validate()) return;
 
-    const { email, password } = formData;
+    const { displayName, email, password } = formData;
+    setLoader(true);
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -106,10 +111,24 @@ function Register() {
         password
       );
       const user = userCredential.user;
-      console.log("User registered:", user);
+
+      // Firestore-ga saqlaymiz
+      await setDoc(doc(db, "users", user.uid), {
+        name: displayName,
+        email: email,
+      });
+
+      // Console ga chiqaramiz
+      console.log("Foydalanuvchi ma'lumotlari:", {
+        name: displayName,
+        email: email,
+      });
+
       alert("Ro‘yxatdan o‘tish muvaffaqiyatli!");
-      setFormData({ fullName: "", email: "", password: "", agree: false });
-      navigate("/account"); // Register bo'lgandan keyin account pagega o'tkazamiz
+
+      setFormData({ displayName: "", email: "", password: "", agree: false });
+      navigate("/");
+      window.location.reload();
     } catch (error) {
       console.error("Xatolik:", error.code, error.message);
 
@@ -120,6 +139,9 @@ function Register() {
       } else {
         alert("Xatolik yuz berdi: " + error.message);
       }
+      setLoader(false);
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -127,14 +149,20 @@ function Register() {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      console.log("Google orqali tizimga kirildi:", user);
       alert("Google orqali muvaffaqiyatli tizimga kirdingiz!");
-      navigate("/account");
+      // console.log(user)
+      // if (user) {
+      //   localStorage.setItem('user', user)
+      // }
+      // // navigate("/account");
+      // window.location.href = '/'
+      // window.location.reload()
     } catch (error) {
-      console.error("Google login xatosi:", error.code, error.message);
       alert("Xatolik: " + error.message);
     }
   };
+
+  console.log(formData);
 
   return (
     <>
@@ -188,14 +216,14 @@ function Register() {
                 <label>To'liq ism</label>
                 <input
                   type="text"
-                  name="fullName"
-                  value={formData.fullName}
+                  name="displayName"
+                  value={formData.displayName}
                   onChange={handleChange}
                   placeholder="Ismingizni kiriting..."
-                  className={errors.fullName ? "error-input" : ""}
+                  className={errors.displayName ? "error-input" : ""}
                 />
-                {errors.fullName && (
-                  <span className="error-message">{errors.fullName}</span>
+                {errors.displayName && (
+                  <span className="error-message">{errors.displayName}</span>
                 )}
 
                 <label>Email</label>
@@ -247,7 +275,7 @@ function Register() {
                 </div>
 
                 <button type="submit" className="register-button">
-                  Roʻyxatdan oʻtish
+                  {loader ? <Loader /> : "Roʻyxatdan oʻtish"}
                 </button>
 
                 <div className="divider">
