@@ -101,6 +101,8 @@ function Register() {
     e.preventDefault();
     if (!validate()) return;
 
+    
+
     const { displayName, email, password } = formData;
     setLoader(true);
 
