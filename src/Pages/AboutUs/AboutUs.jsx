@@ -71,7 +71,7 @@ function AboutUs() {
       <div className="about-us-section container" id="company">
         <div className="about-us-intro">
           <div className="about-us-left">
-            <h2>Malaka haqida</h2>
+            <h2>EduLearn</h2>
           </div>
           <div className="about-us-right">
             <p>
