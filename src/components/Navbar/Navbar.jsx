@@ -30,7 +30,6 @@ const Navbar = () => {
       } else {
         setUserData(null);
         localStorage.removeItem("userName");
-        localStorage.removeItem("userEmail");
       }
     });
 

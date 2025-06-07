@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Courses.css";
 
 // firebase
@@ -12,12 +11,15 @@ import Footer from "../../components/Footer/Footer";
 import CourseCard from "../../components/CourseCard/CourseCard";
 
 // image
-import first from "../../assets/png/first.png";
 import Skeleton from "../../components/Skeleton/Skeleton";
 
 function Courses() {
   const [courses, setCourses] = useState([]);
   const [loading, setIsLoading] = useState(true);
+  const [filter, setFilter] = useState("Hamma kurslar");
+
+  // Kategoriyalarni har doim quyidagicha yozamiz (example)
+  const categories = ["Hamma kurslar", "IT", "Dizayn", "Til kurslari", "Pishirish"];
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -37,7 +39,15 @@ function Courses() {
 
     fetchCourses();
   }, []);
-  console.log(courses);
+
+  // Filterlangan kurslar (agar "Hamma kurslar" bo'lsa, hammasi chiqadi)
+  const filteredCourses =
+    filter === "Hamma kurslar"
+      ? courses
+      : courses.filter(
+          (course) =>
+            course.category && course.category.toLowerCase() === filter.toLowerCase()
+        );
 
   return (
     <>
@@ -49,16 +59,30 @@ function Courses() {
           </div>
           <div className="courses-right">
             <p>
-              Onlayn kurs sahifamizga xush kelibsiz, u yerda siz o'z
-              mahoratingizni oshirishingiz mumkin dizayn va ishlab chiqish
-              ko'nikmalari. Bizdan ehtiyotkorlik bilan tanlang sizga taqdim
-              etish uchun mo'ljallangan 10 ta kurslarning tanlangan tanlovi keng
-              qamrovli bilim va amaliy tajriba ni o'rganing Quyidagi kurslarni
-              o'qing va o'rganish sayohatingiz uchun eng mos variantni toping.
+              Onlayn kurs sahifamizga xush kelibsiz, u yerda siz o'z mahoratingizni oshirishingiz mumkin dizayn va ishlab chiqish ko'nikmalari. Bizdan ehtiyotkorlik bilan tanlang sizga taqdim etish uchun mo'ljallangan 10 ta kurslarning tanlangan tanlovi keng qamrovli bilim va amaliy tajriba ni o'rganing. Quyidagi kurslarni o'qing va o'rganish sayohatingiz uchun eng mos variantni toping.
             </p>
           </div>
         </div>
 
+        {/* FILTER BUTTONS */}
+        <div className="course-filter">
+          {categories.map((cat) => (
+            <div
+              key={cat}
+              className={`filter-btn ${filter === cat ? "active" : ""}`}
+              onClick={() => setFilter(cat)}
+              role="button"
+              tabIndex={0}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") setFilter(cat);
+              }}
+            >
+              {cat}
+            </div>
+          ))}
+        </div>
+
+        {/* COURSE LIST */}
         <div className="course-groups">
           {loading ? (
             <>
@@ -68,8 +92,8 @@ function Courses() {
               <Skeleton />
               <Skeleton />
             </>
-          ) : courses.length > 0 ? (
-            courses.map((course, index) => (
+          ) : filteredCourses.length > 0 ? (
+            filteredCourses.map((course, index) => (
               <CourseCard
                 id={course.id}
                 key={course.id || index}
@@ -82,6 +106,7 @@ function Courses() {
                 curriculum={course.curriculum}
                 images={course.imageUrls || []}
                 videos={course.videoURL || []}
+                category={course.category} // agar kerak bo'lsa
               />
             ))
           ) : (
@@ -93,4 +118,5 @@ function Courses() {
     </>
   );
 }
+
 export default Courses;

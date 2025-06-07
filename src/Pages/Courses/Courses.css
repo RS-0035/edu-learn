@@ -1,7 +1,7 @@
 .courses-intro {
   width: 100%;
-  margin:80px 0;
-  padding:0 80px;
+  margin: 80px 0;
+  padding: 0 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,49 +29,77 @@
 }
 
 .course-groups {
-    margin-top: 100px;
-    margin-bottom: 100px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.course-filter {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  padding: 0px 80px; /* agar joy kam bo'lsa keyingi qatordan davom etadi */
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  background-color: #fff;
+}
+
+.filter-btn:hover {
+  border-color: #007bff;
+}
+
+.filter-btn.active {
+  border-color: #007bff;
+  background-color: #e6f0ff;
+  color: #007bff;
+  font-weight: 700;
 }
 
 @media (max-width: 1214px) {
-    .courses-left h2 {
-      font-size: 30px;
-    }
-    .courses-right p {
-      font-size: 14px;
-    }
+  .courses-left h2 {
+    font-size: 30px;
   }
-  @media (max-width: 768px) {
-    .courses-intro {
-      flex-direction: column;
-      gap: 20px;
-      padding: 40px;
-      margin-top: 20px;
-      margin-bottom: 0;
-    }
-    
-    .courses-left {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-bottom: 0px;
-    }
-    .courses-right {
-      width: 100%;
-      justify-content: center;
-      padding: 5px;
-    }
+  .courses-right p {
+    font-size: 14px;
   }
-  
-  @media (max-width:480px) {
-    .courses-left h2 {
-      font-size: 26px;
-    }
-    .courses-intro {
-      padding: 20px;
-      margin-top: 20px;
-    }
+}
+@media (max-width: 768px) {
+  .courses-intro {
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+    margin-top: 20px;
+    margin-bottom: 0;
   }
 
-  
+  .courses-left {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0px;
+  }
+  .courses-right {
+    width: 100%;
+    justify-content: center;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .courses-left h2 {
+    font-size: 26px;
+  }
+  .courses-intro {
+    padding: 20px;
+    margin-top: 20px;
+  }
+}

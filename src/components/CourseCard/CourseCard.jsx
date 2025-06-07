@@ -47,6 +47,13 @@ function CourseCard({
   };
 
   function handleBuyBtn() {
+    const userEmail = localStorage.getItem("userEmail");
+    if (!userEmail) {
+      // Ro'yxatdan o'tmagan bo'lsa register sahifasiga o'tkazamiz
+      alert("Avval royxatdan o'tishingiz kerak!")
+      navigate("/register");
+      return;
+    }
     setOpenModal(true);
   }
 
