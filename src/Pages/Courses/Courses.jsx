@@ -37,7 +37,7 @@ function Courses() {
 
     fetchCourses();
   }, []);
-
+  console.log(courses);
 
   return (
     <>
@@ -67,7 +67,6 @@ function Courses() {
               <Skeleton />
               <Skeleton />
               <Skeleton />
-              
             </>
           ) : courses.length > 0 ? (
             courses.map((course, index) => (
@@ -79,6 +78,7 @@ function Courses() {
                 duration={course.duration}
                 level={course.level}
                 instructor={course.instructor}
+                price={course.price}
                 curriculum={course.curriculum}
                 images={course.imageUrls || []}
                 videos={course.videoURL || []}

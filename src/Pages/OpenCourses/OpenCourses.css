@@ -41,6 +41,13 @@
   padding: 20px 40px;
 
 }
+.locked-video-message{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
 /* vguh */
 @media (max-width: 1214px) {
   .open-courses-left h2 {

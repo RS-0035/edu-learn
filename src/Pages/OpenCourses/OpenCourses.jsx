@@ -14,6 +14,7 @@ function OpenCourses() {
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentVideo, setCurrentVideo] = useState("");
+  const [hasPurchased, setHasPurchased] = useState(false);
   const [activeModuleIndex, setActiveModuleIndex] = useState(0);
   const [activeLessonIndex, setActiveLessonIndex] = useState(0);
 
@@ -27,11 +28,13 @@ function OpenCourses() {
           const courseData = { id: docSnap.id, ...docSnap.data() };
           setCourse(courseData);
 
-          if (courseData.curriculum?.length > 0) {
+          if (
+            courseData.curriculum?.length > 0 &&
+            courseData.curriculum[0].videos?.length > 0 &&
+            hasPurchased
+          ) {
             const firstModule = courseData.curriculum[0];
-            if (firstModule.videos?.length > 0) {
-              setCurrentVideo(firstModule.videos[0].videoUrl);
-            }
+            setCurrentVideo(firstModule.videos[0].videoUrl);
           }
         } else {
           console.log("Course not found");
@@ -44,9 +47,21 @@ function OpenCourses() {
     };
 
     fetchCourse();
-  }, [id]);
+  }, [id, hasPurchased]);
+  useEffect(() => {
+    setHasPurchased(false); // yoki Firebase’dan tekshir
+  }, []);
+
+  const hasPurchasedCourse = localStorage
+    .getItem("purchased_courses")
+    ?.split(",")
+    ?.includes(id);
 
   const handleVideoSelect = (moduleIdx, lessonIdx, videoURL) => {
+    if (!video.isFree && !hasPurchasedCourse) {
+      alert("Bu dars faqat to‘lovdan keyin ko‘rish mumkin.");
+      return;
+    }
     setActiveModuleIndex(moduleIdx);
     setActiveLessonIndex(lessonIdx);
     setCurrentVideo(videoURL);
@@ -84,7 +99,15 @@ function OpenCourses() {
             </div>
 
             <div className="video-play-section">
-              <YouTubePlayer videoUrl={currentVideo} />
+              {hasPurchased ? (
+                <YouTubePlayer videoUrl={currentVideo} />
+              ) : (
+                <div className="locked-video-message">
+                  <p>
+                    🚫 Ushbu videoni ko‘rish uchun avval kursni sotib oling.
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="course-page">
@@ -96,6 +119,7 @@ function OpenCourses() {
                   activeLessonIndex={activeLessonIndex}
                   onVideoSelect={handleVideoSelect}
                   moduleIndex={idx}
+                  hasPurchasedCourse={hasPurchasedCourse}
                 />
               ))}
             </div>

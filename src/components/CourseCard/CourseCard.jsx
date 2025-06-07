@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CourseCard.css";
+import PaymentModal from "../PaymentModal/PaymentModal";
+import Payment from "../Payment/Payment";
 
 /**
  * CourseCard Component
@@ -18,7 +20,10 @@ function CourseCard({
   instructor,
   curriculum,
   videos,
+  price,
+  hasPurchased,
 }) {
+  const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
 
   const handleViewCourse = () => {
@@ -41,6 +46,10 @@ function CourseCard({
     }
   };
 
+  function handleBuyBtn() {
+    setOpenModal(true);
+  }
+
   return (
     <div className="course-card">
       {/* Header: Title + Description + Button */}
@@ -49,22 +58,47 @@ function CourseCard({
           <h2>{title}</h2>
           <p>{description}</p>
         </div>
-        <button className="view-btn" onClick={handleViewCourse}>
-          Kursni ko'rish
-        </button>
+        <div className="button-group">
+          <button className="view-btn" onClick={handleViewCourse}>
+            Kursni ko'rish
+          </button>
+          {!hasPurchased ? (
+            <button
+              className="buy-btn"
+              onClick={handleBuyBtn}
+              disabled={!price || price === 0} // narx yo‘q yoki 0 bo‘lsa disabled
+              title={
+                !price || price === 0
+                  ? "Bu kurs bepul va sotib olish shart emas"
+                  : ""
+              }
+            >
+              {!price ? "Bepul":"Sotib olish"}
+            </button>
+          ) : (
+            <span className="purchased-label">✅ Sotib olingan</span>
+          )}
+        </div>
       </div>
 
+      <Payment
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        price={price}
+      />
       {/* Video Thumbnails */}
       <div className="course-images">
         {videos?.length > 0 ? (
-          videos.slice(0, 3).map((video, index) => (
-            <img
-              key={index}
-              src={getYouTubeThumbnail(video)}
-              alt={`Course Video ${index + 1}`}
-              className="course-thumbnail"
-            />
-          ))
+          videos
+            .slice(0, 3)
+            .map((video, index) => (
+              <img
+                key={index}
+                src={getYouTubeThumbnail(video)}
+                alt={`Course Video ${index + 1}`}
+                className="course-thumbnail"
+              />
+            ))
         ) : (
           <p>Hech qanday video mavjud emas</p>
         )}
@@ -74,7 +108,14 @@ function CourseCard({
       <div className="course-meta">
         <span className="meta-item">{duration}</span>
         <span className="meta-item">{level}</span>
+
         <span className="instructor">By {instructor}</span>
+      </div>
+
+      <div className="course-price-section">
+        <p className="course-price">
+          Narxi: {price ? `${price} so'm` : "Bepul"}
+        </p>
       </div>
 
       {/* Curriculum Section */}

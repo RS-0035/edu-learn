@@ -7,12 +7,17 @@ const CourseModule = ({
   activeModuleIndex,
   activeLessonIndex,
   onVideoSelect,
+  hasPurchasedCourse,
 }) => {
   const isActiveLesson = (index) =>
     activeModuleIndex === moduleIndex && activeLessonIndex === index;
 
-  const handleLessonClick = (index, videoUrl) => {
-    onVideoSelect(moduleIndex, index, videoUrl);
+  const handleLessonClick = (index, video) => {
+    if (!video.isFree && !hasPurchasedCourse) {
+      alert("Bu dars faqat to‘lovdan keyin ko‘rish mumkin.");
+      return;
+    }
+    onVideoSelect(moduleIndex, index, video);
   };
 
   return (
@@ -28,10 +33,15 @@ const CourseModule = ({
           <li
             key={index}
             className={`lesson ${isActiveLesson(index) ? "highlighted" : ""}`}
-            onClick={() => handleLessonClick(index, video.videoUrl)}
+            onClick={() => handleLessonClick(index, video)} // ✅ o'zgartirildi
           >
             <div>
-              <p className="lesson-name">{video.title}</p>
+              <p className="lesson-name">
+                {video.title}
+                {!video.isFree && !hasPurchasedCourse && (
+                  <span style={{ marginLeft: 8, color: "gray" }}>🔒</span>
+                )}
+              </p>
               <span className="lesson-sub">Lesson {index + 1}</span>
             </div>
             <div className="lesson-duration">

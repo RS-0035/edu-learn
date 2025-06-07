@@ -13,8 +13,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  width: 100%;
 }
 
 .course-header-text {
@@ -31,7 +30,45 @@
   font-size: 14px;
   color: #555;
   margin: 0;
-  width: 70%;
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  width: 20%;
+  justify-content: flex-end;
+ 
+}
+
+.buy-btn {
+  background-color: #ff9800; /* yashil */
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  width: 60%;
+}
+
+.buy-btn:hover {
+  background-color: #ff9900be;
+}
+
+.purchased-label {
+  padding: 10px 18px;
+  background-color: #e6f4ea;
+  color: #ff9800;
+  border: 1px solid #198754;
+  border-radius: 6px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
 }
 
 /* ==== View Button ==== */
@@ -43,7 +80,9 @@
   border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 500;
   transition: background-color 0.2s ease;
+  width: 60%;
 }
 
 .view-btn:hover {
@@ -126,8 +165,23 @@
   color: #333;
 }
 
+.course-price-section {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 10px;
+  margin-left: 25px;
+}
+
+.course-price {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+
 /* ==== Responsive Design ==== */
-@media (max-width:770px) {
+@media (max-width: 770px) {
   .course-card {
     margin: 20px 40px;
   }
