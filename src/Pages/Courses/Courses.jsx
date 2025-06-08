@@ -27,7 +27,7 @@ function Courses() {
     { label: "Hayotiy ko‘nikmalar", value: "LifeSkills" },
     { label: "Kasblar", value: "Profession" },
     { label: "Marketing", value: "Marketing" },
-    { label: "Dasturlash", value: "Development" },
+    { label: "Shaxsiy rivojlanish", value: "Development" },
     { label: "Fanlar", value: "Subjects" },
   ];
 
