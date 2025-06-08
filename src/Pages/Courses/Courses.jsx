@@ -17,9 +17,19 @@ function Courses() {
   const [courses, setCourses] = useState([]);
   const [loading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState("Hamma kurslar");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   // Kategoriyalarni har doim quyidagicha yozamiz (example)
-  const categories = ["Hamma kurslar", "IT", "Dizayn", "Til kurslari", "Pishirish"];
+  const categories = [
+    { label: "Hamma kurslar", value: "all" },
+    { label: "IT va Dizayn", value: "IT" },
+    { label: "Tillar", value: "Languages" },
+    { label: "Hayotiy ko‘nikmalar", value: "LifeSkills" },
+    { label: "Kasblar", value: "Profession" },
+    { label: "Marketing", value: "Marketing" },
+    { label: "Dasturlash", value: "Development" },
+    { label: "Fanlar", value: "Subjects" },
+  ];
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -42,13 +52,9 @@ function Courses() {
 
   // Filterlangan kurslar (agar "Hamma kurslar" bo'lsa, hammasi chiqadi)
   const filteredCourses =
-    filter === "Hamma kurslar"
+    selectedCategory === "all"
       ? courses
-      : courses.filter(
-          (course) =>
-            course.category && course.category.toLowerCase() === filter.toLowerCase()
-        );
-
+      : courses.filter((course) => course.category === selectedCategory);
   return (
     <>
       <Navbar />
@@ -59,7 +65,12 @@ function Courses() {
           </div>
           <div className="courses-right">
             <p>
-              Onlayn kurs sahifamizga xush kelibsiz, u yerda siz o'z mahoratingizni oshirishingiz mumkin dizayn va ishlab chiqish ko'nikmalari. Bizdan ehtiyotkorlik bilan tanlang sizga taqdim etish uchun mo'ljallangan 10 ta kurslarning tanlangan tanlovi keng qamrovli bilim va amaliy tajriba ni o'rganing. Quyidagi kurslarni o'qing va o'rganish sayohatingiz uchun eng mos variantni toping.
+              Onlayn kurs sahifamizga xush kelibsiz, u yerda siz o'z
+              mahoratingizni oshirishingiz mumkin dizayn va ishlab chiqish
+              ko'nikmalari. Bizdan ehtiyotkorlik bilan tanlang sizga taqdim
+              etish uchun mo'ljallangan 10 ta kurslarning tanlangan tanlovi keng
+              qamrovli bilim va amaliy tajriba ni o'rganing. Quyidagi kurslarni
+              o'qing va o'rganish sayohatingiz uchun eng mos variantni toping.
             </p>
           </div>
         </div>
@@ -68,16 +79,18 @@ function Courses() {
         <div className="course-filter">
           {categories.map((cat) => (
             <div
-              key={cat}
-              className={`filter-btn ${filter === cat ? "active" : ""}`}
-              onClick={() => setFilter(cat)}
+              key={cat.value}
+              className={`filter-btn ${
+                selectedCategory === cat.value ? "active" : ""
+              }`}
+              onClick={() => setSelectedCategory(cat.value)}
               role="button"
               tabIndex={0}
               onKeyPress={(e) => {
-                if (e.key === "Enter") setFilter(cat);
+                if (e.key === "Enter") selectedCategory(cat.value);
               }}
             >
-              {cat}
+              {cat.label}
             </div>
           ))}
         </div>

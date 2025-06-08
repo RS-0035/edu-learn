@@ -17,6 +17,7 @@ function OpenCourses() {
   const [hasPurchased, setHasPurchased] = useState(false);
   const [activeModuleIndex, setActiveModuleIndex] = useState(0);
   const [activeLessonIndex, setActiveLessonIndex] = useState(0);
+  const [currentVideoIsFree, setCurrentVideoIsFree] = useState(false);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -28,13 +29,38 @@ function OpenCourses() {
           const courseData = { id: docSnap.id, ...docSnap.data() };
           setCourse(courseData);
 
-          if (
-            courseData.curriculum?.length > 0 &&
-            courseData.curriculum[0].videos?.length > 0 &&
-            hasPurchased
-          ) {
-            const firstModule = courseData.curriculum[0];
-            setCurrentVideo(firstModule.videos[0].videoUrl);
+          if (courseData.curriculum?.length > 0) {
+            let firstVideoUrl = "";
+            let firstVideoIsFree = false;
+            let firstModuleIdx = 0;
+            let firstLessonIdx = 0;
+
+            if (hasPurchased) {
+              // Agar kurs sotib olingan bo‘lsa, birinchi video
+              firstVideoUrl = courseData.curriculum[0].videos[0].videoUrl;
+              firstVideoIsFree = courseData.curriculum[0].videos[0].isFree;
+            } else {
+              // Kurs sotib olinmagan, bepul birinchi videoni topamiz
+              outer: for (let m = 0; m < courseData.curriculum.length; m++) {
+                const module = courseData.curriculum[m];
+                for (let l = 0; l < module.videos.length; l++) {
+                  if (module.videos[l].isFree) {
+                    firstVideoUrl = module.videos[l].videoUrl;
+                    firstVideoIsFree = true;
+                    firstModuleIdx = m;
+                    firstLessonIdx = l;
+                    break outer; // to‘xtatamiz, birinchi bepul topildi
+                  }
+                }
+              }
+            }
+
+            if (firstVideoUrl) {
+              setCurrentVideo(firstVideoUrl);
+              setCurrentVideoIsFree(firstVideoIsFree);
+              setActiveModuleIndex(firstModuleIdx);
+              setActiveLessonIndex(firstLessonIdx);
+            }
           }
         } else {
           console.log("Course not found");
@@ -48,23 +74,24 @@ function OpenCourses() {
 
     fetchCourse();
   }, [id, hasPurchased]);
+
   useEffect(() => {
-    setHasPurchased(false); // yoki Firebase’dan tekshir
-  }, []);
+    const purchasedCourses =
+      localStorage.getItem("purchased_courses")?.split(",") || [];
+    setHasPurchased(purchasedCourses.includes(id)); // yoki Firebase’dan tekshir
+  }, [id]);
 
-  const hasPurchasedCourse = localStorage
-    .getItem("purchased_courses")
-    ?.split(",")
-    ?.includes(id);
+  const handleVideoSelect = (moduleIdx, lessonIdx, video) => {
+    console.log(video);
 
-  const handleVideoSelect = (moduleIdx, lessonIdx, videoURL) => {
-    if (!video.isFree && !hasPurchasedCourse) {
+    if (!video.isFree && !hasPurchased) {
       alert("Bu dars faqat to‘lovdan keyin ko‘rish mumkin.");
       return;
     }
     setActiveModuleIndex(moduleIdx);
     setActiveLessonIndex(lessonIdx);
-    setCurrentVideo(videoURL);
+    setCurrentVideo(video.videoUrl);
+    setCurrentVideoIsFree(video.isFree);
   };
 
   return (
@@ -99,7 +126,7 @@ function OpenCourses() {
             </div>
 
             <div className="video-play-section">
-              {hasPurchased ? (
+              {hasPurchased || currentVideoIsFree ? (
                 <YouTubePlayer videoUrl={currentVideo} />
               ) : (
                 <div className="locked-video-message">
@@ -119,7 +146,7 @@ function OpenCourses() {
                   activeLessonIndex={activeLessonIndex}
                   onVideoSelect={handleVideoSelect}
                   moduleIndex={idx}
-                  hasPurchasedCourse={hasPurchasedCourse}
+                  hasPurchasedCourse={hasPurchased}
                 />
               ))}
             </div>

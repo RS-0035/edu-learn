@@ -18,6 +18,8 @@ const CourseModule = ({
       return;
     }
     onVideoSelect(moduleIndex, index, video);
+    console.log(video);
+    
   };
 
   return (
